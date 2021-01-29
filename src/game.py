@@ -17,6 +17,7 @@ def play_game(screen, perso, mat, images):
     running = True
     has_changed = True
     compteur = 0
+    delta_t = 150
     while running:
         
         list_event, list_pressed = pg.event.get(), pg.key.get_pressed()
@@ -24,25 +25,25 @@ def play_game(screen, perso, mat, images):
         if list_pressed[pg.K_UP]:
             has_changed = True
             perso.deplacement((0,-1), mat)
-            pg.time.wait(200)
+            pg.time.wait(delta_t)
             compteur += 1
 
         if list_pressed[pg.K_DOWN]:
             has_changed = True
             perso.deplacement((0,1), mat)
-            pg.time.wait(200)
+            pg.time.wait(delta_t)
             compteur += 1
 
         if list_pressed[pg.K_RIGHT]:
             has_changed = True
             perso.deplacement((1,0), mat)
-            pg.time.wait(200)
+            pg.time.wait(delta_t)
             compteur += 1
 
         if list_pressed[pg.K_LEFT]:
             has_changed = True
             perso.deplacement((-1,0), mat)
-            pg.time.wait(200)
+            pg.time.wait(delta_t)
             compteur += 1
 
 
