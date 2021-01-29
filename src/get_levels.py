@@ -70,9 +70,15 @@ def load_all_levels():
         
 
 
-print("dans get _levels")
 if __name__ == "__main__":
     """ la section de tests du module"""
+   
+    ######
+    # a = tableau_vide(3,4)
+    # print(a)
+    # a[2][1] = 3
+    # print(a)
+    ###################################
 
     list_levels = load_all_levels()
 
