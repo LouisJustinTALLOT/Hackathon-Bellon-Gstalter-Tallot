@@ -16,6 +16,7 @@ def init_level(list_levels, i):
 def play_game(screen, perso, mat, images):
     running = True
     has_changed = True
+    compteur = 0
     while running:
         
         list_event, list_pressed = pg.event.get(), pg.key.get_pressed()
@@ -45,6 +46,7 @@ def play_game(screen, perso, mat, images):
                     running = False
                 elif event.type == pg.KEYDOWN:
                     has_changed = True
+                    compteur += 1
 
                     if event.key == pg.K_q:
                         running = False
@@ -63,4 +65,15 @@ def play_game(screen, perso, mat, images):
         if perso.escalier:
             perso.escalier = False
             return 1 #on va passer au niveau suivant
+        if perso.vie == 0:
+            return 0 #game_over
+        if perso.etat <= 0 or perso.faim <= 0:
+            perso.vie -= 1
+            perso.faim = 100
+            perso.etat = 100
+        if compteur == 10:
+            compteur = 0
+            if perso.etat < 100:
+                perso.etat += 1
+            perso.faim -= 5
     return 0
