@@ -37,7 +37,27 @@ class Level:
         # print("path : ", path, "\n")
         with open(path, 'r', encoding='utf8') as file:
             tableau_niveau = file.readlines()
-            print(tableau_niveau)
+            # print(tableau_niveau)
+
+        for i, ligne in enumerate(tableau_niveau) :
+            # print(repr(ligne)) 
+            if ligne[-1]=="\n":
+                tableau_niveau[i] = ligne[:-1] # on fait juste ça pour enlever le \n à la fin de la ligne
+            # print(repr(ligne))
+            # print(len(tableau_niveau[i]))
+
+        self.longueur = len(tableau_niveau[0])
+        self.hauteur = len(tableau_niveau)
+        # print("long hauteur")
+        # print(self.longueur, self.hauteur)
+        # print("")
+
+        self.matrice_niveau = tableau_vide(self.hauteur, self.longueur)
+
+        for i in range(self.hauteur):
+            for j in range(self.longueur):
+                self.matrice_niveau[i][j] = interpretation(tableau_niveau[i][j])
+        # print(len(self.matrice_niveau))
 
 
 def load_all_levels():
