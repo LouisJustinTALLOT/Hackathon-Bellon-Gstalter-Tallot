@@ -1,13 +1,7 @@
 import os
 from pathlib import Path 
-# print(os.path.realpath(__file__))
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
-# os.chdir(dir_path)
-# levels = Path("levels")
-# for level in levels.glob("*.txt"):
-#     with level.open() as file:
-
-
 
 def tableau_vide(n,m):
     return [[0 for j in range(m)] for i in range(n)]
@@ -20,16 +14,14 @@ def interpretation(car):
 
     if car == " ":
         return 0
+
     if car == "@":
         return 1
 
     if car == "#":
         return 2
 
-
-
     return 0
-
 
 class Level:
 
@@ -38,49 +30,30 @@ class Level:
         self.longueur = long
         self.hauteur = height
 
-
     def load_from_txt(self, path:str):
         # print("path : ", path, "\n")
         with open(path, 'r', encoding='utf8') as file:
             tableau_niveau = file.readlines()
-            # print(tableau_niveau)
 
         for i, ligne in enumerate(tableau_niveau) :
             # print(repr(ligne)) 
             if ligne[-1]=="\n":
                 tableau_niveau[i] = ligne[:-1] # on fait juste ça pour enlever le \n à la fin de la ligne
-            # print(repr(ligne))
-            # print(len(tableau_niveau[i]))
 
         self.longueur = len(tableau_niveau[0])
         self.hauteur = len(tableau_niveau)
-        # print("long hauteur")
-        # print(self.longueur, self.hauteur)
-        # print("")
 
         self.matrice_niveau = tableau_vide(self.hauteur, self.longueur)
 
         for i in range(self.hauteur):
             for j in range(self.longueur):
                 self.matrice_niveau[i][j] = interpretation(tableau_niveau[i][j])
-        # print(len(self.matrice_niveau))
-
 
 def load_all_levels():
     """ Retourne un tableau contenant des instances de Level
     à partir des fichiers présents dans /levels
     """
-
     list_levels = []
-
-    # on récupère le chemin du fichier
-    # dir_path = os.path.dirname(os.path.realpath(__file__))
-    # print(dir_path, end="\n\n")
-    # os.chdir(dir_path)
-    # on se place dans le répertoire principal
-    # os.chdir(os.path.pardir)
-    # os.chdir("levels") # on est dans le dossier des niveaux
-    
     liste_des_fichiers = os.listdir("levels") # tous les fichiers de niveaux
     liste_des_fichiers.sort()
     i = 0
@@ -92,12 +65,9 @@ def load_all_levels():
 
         list_levels.append(niveau)
 
-    # os.chdir(dir_path)
-    # os.chdir("../")
-
     return list_levels
         
-
+# section de test 
 
 if __name__ == "__main__":
     """ la section de tests du module"""
