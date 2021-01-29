@@ -36,4 +36,7 @@ def play_game(screen, perso, mat, images):
             display.affichage(screen, mat, images)
             has_changed = False
             pg.display.update()
+        if perso.escalier:
+            perso.escalier = False
+            return 1 #on va passer au niveau suivant
     return 0
