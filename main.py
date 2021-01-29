@@ -1,5 +1,10 @@
 import pygame as pg
-from random import randint
+import sys
+sys.path.insert(1, './src')
+
+import get_levels
+
+print("c")
 
 import display
 
