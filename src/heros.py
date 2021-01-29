@@ -1,4 +1,6 @@
 import pygame as pg
+import sys
+sys.path.insert(1, './src')
 
 class Heros:
     def __init__(self, x=0, y=0):
