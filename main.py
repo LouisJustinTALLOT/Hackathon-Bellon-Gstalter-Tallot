@@ -10,6 +10,7 @@ import src.game as game
 # Initialisation
 list_levels = gl.load_all_levels()
 pg.init()
+pg.display.set_caption('Rogue')
 clock = pg.time.Clock()
 images = [pg.image.load("images/sol.png"), 
           pg.image.load("images/heros.png"), 
