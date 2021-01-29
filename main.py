@@ -9,11 +9,13 @@ import src.heros as heros
 
 # faire 'Q' pour arrêter le script'
 list_levels = gl.load_all_levels()
-mat = list_levels[0].matrice_niveau
+level_1 = list_levels[0]
+mat = level_1.matrice_niveau
+x0, y0 = level_1.depart_heros_x, level_1.depart_heros_y
 pg.init()
 n, m = len(mat), len(mat[0])
 screen = display.init(m, n) #appelle le fichier externe display.py
-perso = heros.Heros(20,20)
+perso = heros.Heros(x0, y0)
 clock = pg.time.Clock()
 running = True
 images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")] #images à afficher
