@@ -6,6 +6,25 @@ os.chdir(dir_path)
 def tableau_vide(n,m):
     return [[0 for j in range(m)] for i in range(n)]
 
+def interpretation(car):
+    """ la fonction qui prend un caractère du niveau en .txt
+    et renvoie un entier en fonction du type représenté par 
+    ce caractère
+    """
+
+    if car == " ":
+        return 0
+    if car == "@":
+        return 1
+
+    if car == "#":
+        return 2
+
+
+
+    return 0
+
+
 class Level:
 
     def __init__(self, no=1, long=0, height=0) -> None:
