@@ -29,6 +29,13 @@ def interpretation(car):
 
     if car == 'M': #monstre
         return 5
+
+    if car == "P": # porte
+        return 6
+        
+    if car == "h": #potion (healing)
+        return 7
+
     return 0
 
 class Level:
