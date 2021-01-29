@@ -20,7 +20,17 @@ images = [pg.image.load("images/sol.png"),
           pg.image.load("images/porte.png"),
           pg.image.load("images/potion.png"),
           pg.image.load("images/epee.png"),
-          pg.image.load("images/dollar.png")
+          pg.image.load("images/dollar.png"),
+          pg.image.load("images/mur_coin_haut_gauche.png"),
+          pg.image.load("images/mur_coin_haut_droit.png"),
+          pg.image.load("images/mur_coin_bas_gauche.png"),
+          pg.image.load("images/mur_coin_bas_droit.png"),
+          pg.image.load("images/mur_T_normal.png"),
+          pg.image.load("images/mur_T_inv.png"),
+          pg.image.load("images/mur_T_droit.png"),
+          pg.image.load("images/mur_T_gauche.png"), 
+          pg.image.load("images/mur_horizontal.png"), 
+          pg.image.load("images/mur_vertical.png") 
 ] #images à afficher
 messages = [pg.image.load("images/perdu.png"),
             pg.image.load("images/bravo.png"),
