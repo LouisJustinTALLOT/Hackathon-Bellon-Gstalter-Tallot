@@ -24,21 +24,26 @@ def play_game(screen, perso, mat, images):
         if list_pressed[pg.K_UP]:
             has_changed = True
             perso.deplacement((0,-1), mat)
-            pg.time.wait(250)
+            pg.time.wait(200)
+            compteur += 1
+
         if list_pressed[pg.K_DOWN]:
             has_changed = True
             perso.deplacement((0,1), mat)
-            pg.time.wait(250)
+            pg.time.wait(200)
+            compteur += 1
 
         if list_pressed[pg.K_RIGHT]:
             has_changed = True
             perso.deplacement((1,0), mat)
-            pg.time.wait(250)
+            pg.time.wait(200)
+            compteur += 1
 
         if list_pressed[pg.K_LEFT]:
             has_changed = True
             perso.deplacement((-1,0), mat)
-            pg.time.wait(250)
+            pg.time.wait(200)
+            compteur += 1
 
 
         for event in list_event:
@@ -46,7 +51,7 @@ def play_game(screen, perso, mat, images):
                     running = False
                 elif event.type == pg.KEYDOWN:
                     has_changed = True
-                    compteur += 1
+                    # compteur += 1
 
                     if event.key == pg.K_q:
                         running = False
