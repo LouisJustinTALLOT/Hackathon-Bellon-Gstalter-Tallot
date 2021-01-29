@@ -1,5 +1,6 @@
 # modules
 import pygame as pg
+from pygame.constants import CONTROLLER_AXIS_TRIGGERLEFT
 
 # fichiers maisons
 import src.get_levels as gl
@@ -19,12 +20,15 @@ perso = heros.Heros(x0, y0)
 clock = pg.time.Clock()
 running = True
 images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")] #images à afficher
+has_changed = True
 while running:
-    clock.tick(1)
+    # clock.tick(1)
     for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
             elif event.type == pg.KEYDOWN:
+                has_changed = True
+
                 if event.key == pg.K_q:
                     running = False
                 if event.key == pg.K_UP:
@@ -35,6 +39,8 @@ while running:
                     perso.deplacement((1,0), mat)
                 if event.key == pg.K_LEFT:
                     perso.deplacement((-1,0), mat)
-    display.affichage(screen, mat, images)
-    pg.display.update()
+    if has_changed:
+        display.affichage(screen, mat, images)
+        has_changed = False
+        pg.display.update()
 pg.quit()
