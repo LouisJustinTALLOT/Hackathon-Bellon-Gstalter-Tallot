@@ -42,6 +42,7 @@ while condition: #on évolue niveau par niveau
         break
     ct += 1 #on va lancer le niveau suivant
     if ct == longueur:
-        display.gagne_ou_perdu(screen, messages, 0)
         break
+screen.blit(messages[p], (10, 10))
+pg.time.wait(5000)
 pg.quit()
