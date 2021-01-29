@@ -24,10 +24,10 @@ class Heros:
         y = self.y
         x += direction[0]
         y += direction[1]
-        if matrice[y][x] == 2:    # mur
+        if matrice[y][x] == 2:     # mur
             self.etat -= 1
 
-        elif matrice[y][x] == 0:  # sol
+        elif matrice[y][x] == 0:   # sol
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
@@ -37,7 +37,7 @@ class Heros:
             self.x, self.y = x + direction[0], y + direction[1]
             matrice[self.y][self.x] = 1
 
-        elif matrice[y][x] == 3:  # escalier
+        elif matrice[y][x] == 3:   # escalier
             self.escalier = True
             self.score += 100
 
@@ -75,10 +75,4 @@ class Heros:
             self.x, self.y = x, y
             self.score += 20
 
-
-
-# section de test 
-
-if __name__ == "__main__":
-    pass
 
