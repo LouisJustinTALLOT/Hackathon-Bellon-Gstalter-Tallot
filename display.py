@@ -30,20 +30,18 @@ def add_borders(screen, n, m):
 
 
 def affichage(screen, matrice):
-    images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")]
+    global images
     n, m = len(matrice), len(matrice[0])
     for i in range(n):
         for j in range(m):
-            screen.blit(images[matrice[i][j]], (16*i, 16*j))
+            screen.blit(images[matrice[j][i]], (16*i, 16*j))
             
 list_levels = gl.load_all_levels()
 mat = list_levels[0].matrice_niveau
-
-mat = np.array(mat)
-mat = mat.T
 n, m = len(mat), len(mat[0])
 
-screen = init(n, m)
+images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")] #images à afficher
+screen = init(m, n)
 affichage(screen, mat)
 
 clock = pg.time.Clock()
