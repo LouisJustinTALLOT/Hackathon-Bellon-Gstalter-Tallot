@@ -23,6 +23,8 @@ class Heros:
 
 
 
+# section de test 
+
 if __name__ == "__main__":
     pg.init()
     screen = pg.display.set_mode((400, 300))
