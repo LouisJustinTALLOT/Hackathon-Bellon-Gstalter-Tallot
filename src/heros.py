@@ -51,6 +51,7 @@ class Heros:
         elif matrice[y][x] == 5:   # monstre
             if self.epee:
                 matrice[y][x] = 0
+                self.score += 30
             else:
                 self.etat -= 20  
 
@@ -67,6 +68,12 @@ class Heros:
             self.x, self.y = x, y
             self.epee = True
             self.score += 10
+        
+        elif matrice[y][x] == 9:   # or
+            matrice[self.y][self.x] = 0
+            matrice[y][x] = 1
+            self.x, self.y = x, y
+            self.score += 20
 
 
 
