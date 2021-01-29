@@ -9,6 +9,7 @@ class Heros:
         self.vie = 3
         self.etat = 100
         self.faim = 100
+        
 
     # def affiche_heros(self, screen):
     #     rect = pg.Rect(self.x, self.y, self.width, self.height)
@@ -28,8 +29,8 @@ class Heros:
             self.x, self.y = x, y
         elif matrice[y][x] == 6:
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
             self.x, self.y = x + direction[0], y + direction[1]
+            matrice[self.y][self.x] = 1
         elif matrice[y][x] == 3:
             pass
             #changement de niveau
