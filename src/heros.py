@@ -9,6 +9,7 @@ class Heros:
         self.vie = 3
         self.etat = 100
         self.faim = 100
+        self.escalier = False
         
 
     # def affiche_heros(self, screen):
@@ -32,7 +33,7 @@ class Heros:
             self.x, self.y = x + direction[0], y + direction[1]
             matrice[self.y][self.x] = 1
         elif matrice[y][x] == 3:
-            pass
+            self.escalier = True
             #changement de niveau
         elif matrice[y][x] == 4:
             matrice[self.y][self.x] = 0
