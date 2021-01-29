@@ -17,14 +17,16 @@ class Heros:
     #     pg.draw.rect(screen, color, rect)
     
     def deplacement(self, direction, matrice):
-        if matrice[self.y][self.x] == 2:
+        x = self.x
+        y = self.y
+        x += direction[0]
+        y += direction[1]
+        if matrice[y][x] == 2:
             self.etat -= 1
-        if matrice[self.y][self.x] == 2:
+        if matrice[y][x] == 0:
             matrice[self.x][self.y] = 0
-            self.x += direction[0]
-            self.y += direction[1]
-            matrice[self.y][self.x] = 1
-
+            matrice[y][x] = 1
+            self.x, self.y = x, y
 
 
 
