@@ -1,4 +1,5 @@
 import pygame as pg
+import numpy as np
 
 # fichiers maisons
 import src.get_levels as gl
@@ -8,6 +9,7 @@ import src.heros as heros
 def init_level(list_levels, i):
     level = list_levels[i]
     mat = level.matrice_niveau
+    bool_matrice = np.ones((len(mat), len(mat[0])))
     x0, y0 = level.depart_heros_x, level.depart_heros_y
     return [mat, x0, y0]
 

@@ -17,6 +17,11 @@ def affichage(screen, matrice, images):
         for j in range(m):
             screen.blit(images[matrice[i][j]], (16*j, 16*i))
 
+def gagne_ou_perdu(screen, messages, i):
+    screen = pg.display.set_mode((400, 300))
+    screen.fill((90, 82, 89))
+    screen.blit(messages[i], (0, 0))
+
 # section de test 
 
 if __name__ == "__main__": 
