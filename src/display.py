@@ -13,7 +13,7 @@ pg.init()
 
 sysfont = pg.font.get_default_font()
 myfont = pg.font.SysFont(None, 20)
-print("font importées")
+#print("font importées")
 
 def init(n, m):
     screen = pg.display.set_mode((16*n, 16*(m+4)))
@@ -40,8 +40,9 @@ def affichage(screen, matrice, images, perso:heros.Heros):
 
     textsurface4 = myfont.render('ETAT : '+str(perso.etat), False, (255, 255, 255))
     screen.blit(textsurface4,(9*m,16*(n+2)))
-    # print(perso.faim)
-    # print(perso.etat)
+
+    if perso.epee:
+        screen.blit(images[8], (11*m, 16*(n+2)))
 
 def gagne_ou_perdu(screen, messages, i, perso:heros.Heros):
     screen = pg.display.set_mode((400, 350))
