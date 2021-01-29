@@ -1,2 +1,25 @@
 import pygame as pg
+import sys
+sys.path.insert(1, './src')
 
+import get_levels
+
+print("c")
+
+import display
+
+# faire 'Q' pour arrêter le script'
+pg.init()
+n, m = 400, 300
+screen = display.init(n, m) #appelle le fichier externe display.py
+clock = pg.time.Clock()
+running = True
+while running:
+    clock.tick(1)
+    for event in pg.event.get():
+        if event.type == pg.KEYDOWN:
+            # si la touche est "Q" on veut quitter le programme
+            if event.key == pg.K_q:
+                running = False
+    pg.display.update()
+pg.quit()
