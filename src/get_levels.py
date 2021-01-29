@@ -13,3 +13,11 @@ class Level:
         self.longueur = long
         self.largeur = larg
 
+
+    def load_from_txt(self, path:str):
+        # print("path : ", path, "\n")
+        with open(path, 'r', encoding='utf8') as file:
+            tableau_niveau = file.readlines()
+            print(tableau_niveau)
+
+
