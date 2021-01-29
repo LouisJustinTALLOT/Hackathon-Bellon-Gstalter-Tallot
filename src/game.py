@@ -18,7 +18,30 @@ def play_game(screen, perso, mat, images):
     has_changed = True
     compteur = 0
     while running:
-        for event in pg.event.get():
+        
+        list_event, list_pressed = pg.event.get(), pg.key.get_pressed()
+
+        if list_pressed[pg.K_UP]:
+            has_changed = True
+            perso.deplacement((0,-1), mat)
+            pg.time.wait(250)
+        if list_pressed[pg.K_DOWN]:
+            has_changed = True
+            perso.deplacement((0,1), mat)
+            pg.time.wait(250)
+
+        if list_pressed[pg.K_RIGHT]:
+            has_changed = True
+            perso.deplacement((1,0), mat)
+            pg.time.wait(250)
+
+        if list_pressed[pg.K_LEFT]:
+            has_changed = True
+            perso.deplacement((-1,0), mat)
+            pg.time.wait(250)
+
+
+        for event in list_event:
                 if event.type == pg.QUIT:
                     running = False
                 elif event.type == pg.KEYDOWN:
@@ -27,14 +50,14 @@ def play_game(screen, perso, mat, images):
 
                     if event.key == pg.K_q:
                         running = False
-                    if event.key == pg.K_UP:
-                        perso.deplacement((0,-1), mat)
-                    if event.key == pg.K_DOWN:
-                        perso.deplacement((0,1), mat)
-                    if event.key == pg.K_RIGHT:
-                        perso.deplacement((1,0), mat)
-                    if event.key == pg.K_LEFT:
-                        perso.deplacement((-1,0), mat)
+                    # if list_pressed[pg.K_UP]:
+                    #     perso.deplacement((0,-1), mat)
+                    # if event.key == pg.K_DOWN:
+                    #     perso.deplacement((0,1), mat)
+                    # if event.key == pg.K_RIGHT:
+                    #     perso.deplacement((1,0), mat)
+                    # if event.key == pg.K_LEFT:
+                    #     perso.deplacement((-1,0), mat)
         if has_changed:
             display.affichage(screen, mat, images,perso)
             has_changed = False
