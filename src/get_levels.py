@@ -39,6 +39,9 @@ def interpretation(car):
     if car == "!":
         return 8
 
+    if car == "$":
+        return 9
+
     return 0
 
 class Level:
