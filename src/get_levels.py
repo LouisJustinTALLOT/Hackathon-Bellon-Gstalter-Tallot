@@ -21,6 +21,14 @@ def interpretation(car):
     if car == "#":
         return 2
 
+    if car == 'E': #escalier
+        return 3 
+    
+    if car == 'o': #nourriture
+        return 4 
+
+    if car == 'M': #monstre
+        return 5
     return 0
 
 class Level:
