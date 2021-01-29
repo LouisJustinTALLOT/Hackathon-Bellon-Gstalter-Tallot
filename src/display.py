@@ -1,9 +1,11 @@
 import pygame as pg
+import numpy as np
+from random import randint
+
 import sys
 sys.path.insert(1, './src')
-from random import randint
+
 import get_levels as gl
-import numpy as np
 
 def init(n, m):
     screen = init_display(16*n, 16*m)
@@ -29,8 +31,6 @@ def add_borders(screen, n, m):
         rect = pg.Rect(i, m-5, width, height)
         pg.draw.rect(screen, color, rect)
 
-
-
 def affichage(screen, matrice):
     images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")]
     n, m = len(matrice), len(matrice[0])
@@ -38,6 +38,7 @@ def affichage(screen, matrice):
         for j in range(m):
             screen.blit(images[matrice[i][j]], (16*i, 16*j))
 
+# section de test 
 
 if __name__ == "__main__": 
     list_levels = gl.load_all_levels()
