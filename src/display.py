@@ -35,6 +35,7 @@ def affichage(screen, matrice, images, perso:heros.Heros):
     textsurface2 = myfont.render('FAIM : '+str(perso.faim), False, (255, 255, 255))
     screen.blit(textsurface2,(5*m,16*(n+2)))
     # print(perso.faim)
+    # print(perso.etat)
 
 def gagne_ou_perdu(screen, messages, i):
     screen = pg.display.set_mode((400, 300))
