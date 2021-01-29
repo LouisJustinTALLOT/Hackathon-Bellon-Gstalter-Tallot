@@ -24,13 +24,15 @@ images = [pg.image.load("images/sol.png"),
 
 condition = True
 ct = 0 #compteur pour les différents niveaux
+mat, x0, y0 = game.init_level(list_levels, ct)
+perso = heros.Heros(x0, y0)
 while condition: #on évolue niveau par niveau
     mat, x0, y0 = game.init_level(list_levels, ct)
-    perso = heros.Heros(x0, y0)
+    perso.x, perso.y = x0, y0
     n, m = len(mat), len(mat[0])
     screen = display.init(m, n)
     p = game.play_game(screen, perso, mat, images)
     if p == 0: #game_over
         break
-    ct += 1
+    ct += 1 #on va lancer le niveau suivant
 pg.quit()
