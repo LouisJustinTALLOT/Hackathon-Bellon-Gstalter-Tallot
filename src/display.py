@@ -6,16 +6,35 @@ import sys
 sys.path.insert(1, './src')
 
 import get_levels as gl
+import src.heros as heros
+
+
+pg.init()
+
+sysfont = pg.font.get_default_font()
+myfont = pg.font.SysFont(None, 20)
+print("font importées")
 
 def init(n, m):
-    screen = pg.display.set_mode((16*n, 16*m))
+    screen = pg.display.set_mode((16*n, 16*(m+4)))
     return screen
 
-def affichage(screen, matrice, images):
+def affichage(screen, matrice, images, perso:heros.Heros):
     n, m = len(matrice), len(matrice[0])
+    # n hauteur, m longueur
     for i in range(n):
         for j in range(m):
             screen.blit(images[matrice[i][j]], (16*j, 16*i))
+
+    black_rect = pg.Rect(0, 16*n, 16*m, 16*4)
+    pg.draw.rect(screen, (0, 0, 0), black_rect)
+
+    textsurface = myfont.render('LIFE : '+str(perso.vie), False, (255, 255, 255))
+    screen.blit(textsurface,(3*m,16*(n+2)))
+
+    textsurface2 = myfont.render('FAIM : '+str(perso.faim), False, (255, 255, 255))
+    screen.blit(textsurface2,(5*m,16*(n+2)))
+    # print(perso.faim)
 
 def gagne_ou_perdu(screen, messages, i):
     screen = pg.display.set_mode((400, 300))

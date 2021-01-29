@@ -35,7 +35,7 @@ def play_game(screen, perso, mat, images):
                     if event.key == pg.K_LEFT:
                         perso.deplacement((-1,0), mat)
         if has_changed:
-            display.affichage(screen, mat, images)
+            display.affichage(screen, mat, images,perso)
             has_changed = False
             pg.display.update()
         if perso.escalier:
