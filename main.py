@@ -20,7 +20,8 @@ images = [pg.image.load("images/sol.png"),
           pg.image.load("images/monstre.png"),
           pg.image.load("images/porte.png"),
           pg.image.load("images/potion.png"),
-          pg.image.load("images/epee.png")
+          pg.image.load("images/epee.png"),
+          pg.image.load("images/dollar.png")
 ] #images à afficher
 messages = [pg.image.load("images/perdu.png"),
             pg.image.load("images/bravo.png")
