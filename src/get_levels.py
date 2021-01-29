@@ -1,7 +1,13 @@
 import os
-
+from pathlib import Path 
+# print(os.path.realpath(__file__))
 dir_path = os.path.dirname(os.path.realpath(__file__))
-os.chdir(dir_path)
+# os.chdir(dir_path)
+# levels = Path("levels")
+# for level in levels.glob("*.txt"):
+#     with level.open() as file:
+
+
 
 def tableau_vide(n,m):
     return [[0 for j in range(m)] for i in range(n)]
@@ -72,19 +78,22 @@ def load_all_levels():
     # print(dir_path, end="\n\n")
     # os.chdir(dir_path)
     # on se place dans le répertoire principal
-    os.chdir(os.path.pardir)
-    os.chdir("levels") # on est dans le dossier des niveaux
+    # os.chdir(os.path.pardir)
+    # os.chdir("levels") # on est dans le dossier des niveaux
     
-    liste_des_fichiers = os.listdir() # tous les fichiers de niveaux
+    liste_des_fichiers = os.listdir("levels") # tous les fichiers de niveaux
     liste_des_fichiers.sort()
     i = 0
 
     for fi in liste_des_fichiers:
         i += 1 
         niveau = Level(no=i)
-        niveau.load_from_txt(fi)
+        niveau.load_from_txt("levels/"+fi)
 
         list_levels.append(niveau)
+
+    # os.chdir(dir_path)
+    # os.chdir("../")
 
     return list_levels
         
@@ -92,6 +101,8 @@ def load_all_levels():
 
 if __name__ == "__main__":
     """ la section de tests du module"""
+
+    print(os.path.dirname(os.path.realpath(__file__)))
    
     ######
     # a = tableau_vide(3,4)
@@ -101,6 +112,7 @@ if __name__ == "__main__":
     ###################################
 
     list_levels = load_all_levels()
+    print(os.path.dirname(os.path.realpath(__file__)))
 
     print("\n______________________________________")
     for ligne in list_levels[0].matrice_niveau:

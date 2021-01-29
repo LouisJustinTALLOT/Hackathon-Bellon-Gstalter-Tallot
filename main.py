@@ -1,15 +1,15 @@
 import pygame as pg
-import sys
-sys.path.insert(1, './src')
+# import sys
+# sys.path.insert(1, './src')
 
-import get_levels
-import display
-import heros
+import src.get_levels as gl
+import src.display as display
+import src.heros as heros
 
 
 # faire 'Q' pour arrêter le script'
 pg.init()
-n, m = 400, 300
+n, m = 40, 30
 screen = display.init(n, m) #appelle le fichier externe display.py
 perso = heros.Heros(20,20)
 clock = pg.time.Clock()
