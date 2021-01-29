@@ -1,7 +1,10 @@
 import pygame as pg
+import numpy as np
+from random import randint
+
 import sys
 sys.path.insert(1, './src')
-from random import randint
+
 import get_levels as gl
 
 def init(n, m):
@@ -17,6 +20,11 @@ def affichage(screen, matrice):
 
 
 images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")] #images à afficher
+
+
+
+
+# section de test 
 
 if __name__ == "__main__": 
     list_levels = gl.load_all_levels()
