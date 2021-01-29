@@ -34,6 +34,12 @@ def affichage(screen, matrice, images, perso:heros.Heros):
 
     textsurface2 = myfont.render('FAIM : '+str(perso.faim), False, (255, 255, 255))
     screen.blit(textsurface2,(5*m,16*(n+2)))
+
+    textsurface3 = myfont.render('SCORE : '+str(perso.score), False, (255, 255, 255))
+    screen.blit(textsurface3,(7*m,16*(n+2)))
+
+    textsurface4 = myfont.render('ETAT : '+str(perso.etat), False, (255, 255, 255))
+    screen.blit(textsurface4,(9*m,16*(n+2)))
     # print(perso.faim)
     # print(perso.etat)
 
