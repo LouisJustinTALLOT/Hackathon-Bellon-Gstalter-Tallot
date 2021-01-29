@@ -9,13 +9,11 @@ print("c")
 import display
 
 # faire 'Q' pour arrêter le script'
-
 pg.init()
 n, m = 400, 300
-screen = display.init_display(n, m)
+screen = display.init(n, m) #appelle le fichier externe display.py
 clock = pg.time.Clock()
 running = True
-display.add_borders(screen, n, m)
 while running:
     clock.tick(1)
     for event in pg.event.get():
