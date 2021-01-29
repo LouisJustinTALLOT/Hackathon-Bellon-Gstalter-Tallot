@@ -82,4 +82,12 @@ if __name__ == "__main__":
 
     list_levels = load_all_levels()
 
+    print("\n______________________________________")
+    for ligne in list_levels[0].matrice_niveau:
+        for i in ligne:
+            if i:
+                print(i, end="")
+            else:
+                print(" ", end="")
+        print("")
 
