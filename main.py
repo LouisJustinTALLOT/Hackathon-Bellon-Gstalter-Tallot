@@ -41,17 +41,17 @@ while condition: #on évolue niveau par niveau
     p = game.play_game(screen, perso, mat, images)
 
     if p == 0: #game_over
-        display.gagne_ou_perdu(screen, messages, 0)
+        display.gagne_ou_perdu(screen, messages, 0, perso)
         pg.display.update()
         break
     if p == 2:
-        display.gagne_ou_perdu(screen, messages, 2)
+        display.gagne_ou_perdu(screen, messages, 2, perso)
         pg.display.update()
         break
 
     ct += 1 #on va lancer le niveau suivant
     if ct == longueur:
-        display.gagne_ou_perdu(screen, messages, 1)
+        display.gagne_ou_perdu(screen, messages, 1, perso)
         pg.display.update()
         break
 pg.time.wait(5000)

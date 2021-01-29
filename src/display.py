@@ -43,11 +43,13 @@ def affichage(screen, matrice, images, perso:heros.Heros):
     # print(perso.faim)
     # print(perso.etat)
 
-def gagne_ou_perdu(screen, messages, i):
-    screen = pg.display.set_mode((400, 300))
+def gagne_ou_perdu(screen, messages, i, perso:heros.Heros):
+    screen = pg.display.set_mode((400, 350))
     black_rect = pg.Rect(0, 0, 400, 300)
     pg.draw.rect(screen, (0, 0, 0), black_rect)
     screen.blit(messages[i], (0, 0))
+    textsurface = myfont.render('SCORE : '+str(perso.score), False, (255, 255, 255))
+    screen.blit(textsurface,(150,320))
 
 # section de test 
 
