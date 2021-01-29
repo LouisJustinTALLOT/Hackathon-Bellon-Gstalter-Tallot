@@ -41,4 +41,9 @@ def play_game(screen, perso, mat, images):
         if perso.escalier:
             perso.escalier = False
             return 1 #on va passer au niveau suivant
+        if perso.vie == 0:
+            return 0 #game_over
+        if perso.etat <= 0:
+            perso.vie -= 1
+            perso.etat = 100
     return 0
