@@ -78,6 +78,7 @@ def play_game(screen, perso, mat, images):
             perso.vie -= 1
             perso.faim = 100
             perso.etat = 100
+            perso.epee = False
         if compteur == 10:
             compteur = 0
             if perso.etat < 100:
