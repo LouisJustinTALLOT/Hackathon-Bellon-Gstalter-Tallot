@@ -24,7 +24,7 @@ class Heros:
         if matrice[y][x] == 2:
             self.etat -= 1
         if matrice[y][x] == 0:
-            matrice[self.x][self.y] = 0
+            matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
 
