@@ -20,5 +20,6 @@
 |17|`}`|mur_T_gauche|
 |18|`-`|mur horizontal|
 |19|`|`|mur vertical|
+|20|`&`|couloir|
 
 <!-- |13|``|| -->

@@ -71,6 +71,9 @@ def interpretation(car):
 
     if car == "|":
         return 19
+    
+    if car == "&":
+        return 20
 
     return 0
 
