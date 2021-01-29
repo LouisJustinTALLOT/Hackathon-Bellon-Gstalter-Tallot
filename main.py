@@ -1,6 +1,5 @@
 # modules
 import pygame as pg
-from pygame.constants import CONTROLLER_AXIS_TRIGGERLEFT
 
 # fichiers maisons
 import src.get_levels as gl
