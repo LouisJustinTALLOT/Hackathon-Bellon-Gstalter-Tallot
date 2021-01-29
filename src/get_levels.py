@@ -1,3 +1,7 @@
+
+def tableau_vide(n,m):
+    return [[0 for j in range(m)] for i in range(n)]
+
 class Level:
 
     def __init__(self, no=1, long=0, larg=0) -> None:
