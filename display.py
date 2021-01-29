@@ -4,6 +4,7 @@ from random import randint
 def init(n, m):
     screen = init_display(n, m)
     add_borders(screen, n, m)
+    return screen
 
 def init_display(n, m):
     screen = pg.display.set_mode((n, m))
@@ -25,6 +26,3 @@ def add_borders(screen, n, m):
         pg.draw.rect(screen, color, rect)
         rect = pg.Rect(i, m-5, width, height)
         pg.draw.rect(screen, color, rect)
-
-def add_monsters(screen, n, m):
-    pass
