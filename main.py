@@ -19,7 +19,15 @@ screen = display.init(m, n) #appelle le fichier externe display.py
 perso = heros.Heros(x0, y0)
 clock = pg.time.Clock()
 running = True
-images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")] #images à afficher
+images = [pg.image.load("images/sol.png"), 
+          pg.image.load("images/heros.png"), 
+          pg.image.load("images/mur.png"),
+          pg.image.load("images/escalier.png"),
+          pg.image.load("images/pomme.png"),
+          pg.image.load("images/monstre.png"),
+          pg.image.load("images/porte.png"),
+          pg.image.load("images/potion.png")
+] #images à afficher
 has_changed = True
 while running:
     # clock.tick(1)
