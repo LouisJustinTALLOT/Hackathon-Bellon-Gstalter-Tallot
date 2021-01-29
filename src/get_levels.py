@@ -29,6 +29,7 @@ class Level:
         self.numero = no
         self.longueur = long
         self.hauteur = height
+        self.depart_heros_x,self.depart_heros_y = 2,2
 
     def load_from_txt(self, path:str):
         # print("path : ", path, "\n")
@@ -47,7 +48,11 @@ class Level:
 
         for i in range(self.hauteur):
             for j in range(self.longueur):
-                self.matrice_niveau[i][j] = interpretation(tableau_niveau[i][j])
+                car = tableau_niveau[i][j]
+                self.matrice_niveau[i][j] = interpretation(car)
+                if car == "@":
+                    self.depart_heros_x,self.depart_heros_y = j, i
+
 
 def load_all_levels():
     """ Retourne un tableau contenant des instances de Level
@@ -70,7 +75,7 @@ def load_all_levels():
 
 
 
-        
+
 # section de test 
 
 if __name__ == "__main__":
