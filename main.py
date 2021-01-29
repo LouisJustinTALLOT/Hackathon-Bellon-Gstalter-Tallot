@@ -14,7 +14,6 @@ screen = display.init(n, m) #appelle le fichier externe display.py
 perso = heros.Heros(20,20)
 clock = pg.time.Clock()
 running = True
-images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")] #images à afficher
 while running:
     clock.tick(1)
     for event in pg.event.get():
