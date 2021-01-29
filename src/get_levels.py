@@ -8,10 +8,10 @@ def tableau_vide(n,m):
 
 class Level:
 
-    def __init__(self, no=1, long=0, larg=0) -> None:
+    def __init__(self, no=1, long=0, height=0) -> None:
         self.numero = no
         self.longueur = long
-        self.largeur = larg
+        self.hauteur = height
 
 
     def load_from_txt(self, path:str):
