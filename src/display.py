@@ -11,18 +11,11 @@ def init(n, m):
     screen = pg.display.set_mode((16*n, 16*m))
     return screen
 
-def affichage(screen, matrice):
-    global images
+def affichage(screen, matrice, images):
     n, m = len(matrice), len(matrice[0])
     for i in range(n):
         for j in range(m):
             screen.blit(images[matrice[i][j]], (16*j, 16*i))
-
-
-images = [pg.image.load("images/sol.png"), pg.image.load("images/heros.png"), pg.image.load("images/mur.png")] #images à afficher
-
-
-
 
 # section de test 
 
