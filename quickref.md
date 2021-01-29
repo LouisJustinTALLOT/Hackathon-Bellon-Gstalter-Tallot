@@ -10,8 +10,8 @@
 |7|`h`|potion|
 |8|`!`|épée|
 |9|`$`|pièce|
-|10|`L`|mur_coin_haut_gauche|
-|11|`/`|mur_coin_haut_droit|
+|10|`L`|mur_coin_haut_droit|
+|11|`/`|mur_coin_haut_gauche|
 |12|`]`|mur_coin_bas_gauche|
 |13|`[`|mur_coin_bas_droit|
 |14|`T`|mur_T_normal|
