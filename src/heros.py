@@ -6,8 +6,6 @@ class Heros:
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
-        #self.width = 16 # largeur du heros en pixels
-        #self.height = 16 # hauteur du heros en pixels
         self.vie = 3
         self.etat = 100
 
