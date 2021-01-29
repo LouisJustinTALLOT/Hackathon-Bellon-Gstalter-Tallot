@@ -11,6 +11,7 @@ class Heros:
         self.faim = 100
         self.escalier = False
         self.epee = False
+        self.score = 0
         
 
     # def affiche_heros(self, screen):
@@ -38,13 +39,14 @@ class Heros:
 
         elif matrice[y][x] == 3:  # escalier
             self.escalier = True
-            #changement de niveau
+            self.score += 100
 
         elif matrice[y][x] == 4:   # pomme
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
             self.faim += 10
+            self.score += 5
 
         elif matrice[y][x] == 5:   # monstre
             if self.epee:
@@ -57,12 +59,14 @@ class Heros:
             matrice[y][x] = 1
             self.x, self.y = x, y
             self.etat += 10
+            self.score += 5
 
         elif matrice[y][x] == 8:   # épée
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
             self.epee = True
+            self.score += 10
 
 
 
