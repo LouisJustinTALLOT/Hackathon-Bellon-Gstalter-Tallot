@@ -4,8 +4,9 @@ class Heros:
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
-        self.width = 30 # largeur du heros en pixels
-        self.height = 30 # hauteur du heros en pixels
+        self.width = 16 # largeur du heros en pixels
+        self.height = 16 # hauteur du heros en pixels
+        self.vie = 3
 
     def affiche_heros(self, screen):
         rect = pg.Rect(self.x, self.y, self.width, self.height)
@@ -15,6 +16,7 @@ class Heros:
     def deplacement(self, direction):
         self.x += direction[0]
         self.y += direction[1]
+
 
 
 
