@@ -50,8 +50,7 @@ class Heros:
 
         elif matrice[y][x] == 5:   # monstre
             if self.epee:
-                matrice[y][x] == 0
-                self.score += 50
+                matrice[y][x] = 0
             else:
                 self.etat -= 20  
 

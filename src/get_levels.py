@@ -35,6 +35,9 @@ def interpretation(car):
         
     if car == "h": #potion (healing)
         return 7
+    
+    if car == "!":
+        return 8
 
     return 0
 
