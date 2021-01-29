@@ -25,6 +25,8 @@ class Heros:
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
+        if matrice[y][x] == 3:
+            matrice = 
 
 
 
