@@ -38,6 +38,10 @@ def affichage(screen, matrice):
         for j in range(m):
             screen.blit(images[matrice[i][j]], (16*i, 16*j))
 
+
+
+
+
 # section de test 
 
 if __name__ == "__main__": 
