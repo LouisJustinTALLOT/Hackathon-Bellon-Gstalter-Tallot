@@ -1,7 +1,14 @@
 import pygame as pg, sys
+from random import randint
+
+def init(n, m):
+    screen = init_display(n, m)
+    add_borders(screen, n, m)
 
 def init_display(n, m):
-    return pg.display.set_mode((n, m))
+    screen = pg.display.set_mode((n, m))
+    screen.fill((89, 90, 92))
+    return screen
 
 
 def add_borders(screen, n, m):
@@ -18,3 +25,6 @@ def add_borders(screen, n, m):
         pg.draw.rect(screen, color, rect)
         rect = pg.Rect(i, m-5, width, height)
         pg.draw.rect(screen, color, rect)
+
+def add_monsters(screen, n, m):
+    pass
