@@ -49,3 +49,12 @@ def load_all_levels():
 
     return list_levels
         
+
+
+print("dans get _levels")
+if __name__ == "__main__":
+    """ la section de tests du module"""
+
+    list_levels = load_all_levels()
+
+
