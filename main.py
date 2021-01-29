@@ -22,8 +22,8 @@ images = [pg.image.load("images/sol.png"),
           pg.image.load("images/potion.png"),
           pg.image.load("images/epee.png")
 ] #images à afficher
-messages = [pg.image.load("images/bravo.png"),
-            pg.image.load("images/perdu.png")
+messages = [pg.image.load("images/perdu.png"),
+            pg.image.load("images/bravo.png")
 ] #bravo et perdu
 
 condition = True
@@ -37,12 +37,15 @@ while condition: #on évolue niveau par niveau
     n, m = len(mat), len(mat[0])
     screen = display.init(m, n)
     p = game.play_game(screen, perso, mat, images)
+
     if p == 0: #game_over
         display.gagne_ou_perdu(screen, messages, 0)
+        pg.display.update()
         break
     ct += 1 #on va lancer le niveau suivant
     if ct == longueur:
+        display.gagne_ou_perdu(screen, messages, 1)
+        pg.display.update()
         break
-screen.blit(messages[p], (10, 10))
 pg.time.wait(5000)
 pg.quit()

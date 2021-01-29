@@ -39,7 +39,8 @@ def affichage(screen, matrice, images, perso:heros.Heros):
 
 def gagne_ou_perdu(screen, messages, i):
     screen = pg.display.set_mode((400, 300))
-    screen.fill((90, 82, 89))
+    black_rect = pg.Rect(0, 0, 400, 300)
+    pg.draw.rect(screen, (0, 0, 0), black_rect)
     screen.blit(messages[i], (0, 0))
 
 # section de test 
