@@ -1,6 +1,8 @@
-import pygame as pg, sys
+import pygame as pg
+import sys
+sys.path.insert(1, './src')
 from random import randint
-import src.get_levels as gl
+import get_levels as gl
 import numpy as np
 
 def init(n, m):
@@ -35,26 +37,28 @@ def affichage(screen, matrice):
     for i in range(n):
         for j in range(m):
             screen.blit(images[matrice[i][j]], (16*i, 16*j))
-            
-list_levels = gl.load_all_levels()
-mat = list_levels[0].matrice_niveau
 
-mat = np.array(mat)
-mat = mat.T
-n, m = len(mat), len(mat[0])
 
-screen = init(n, m)
-affichage(screen, mat)
+if __name__ == "__main__": 
+    list_levels = gl.load_all_levels()
+    mat = list_levels[0].matrice_niveau
 
-clock = pg.time.Clock()
-running = True
-while running:
-    clock.tick(1)
-    for event in pg.event.get():
-            if event.type == pg.QUIT:
-                running = False
-            elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_q:
-                    running = False       
-    pg.display.update()
-pg.quit()
+    mat = np.array(mat)
+    mat = mat.T
+    n, m = len(mat), len(mat[0])
+
+    screen = init(n, m)
+    affichage(screen, mat)
+
+    clock = pg.time.Clock()
+    running = True
+    while running:
+        clock.tick(1)
+        for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    running = False
+                elif event.type == pg.KEYDOWN:
+                    if event.key == pg.K_q:
+                        running = False       
+        pg.display.update()
+    pg.quit()
