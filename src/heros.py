@@ -24,7 +24,7 @@ class Heros:
         y = self.y
         x += direction[0]
         y += direction[1]
-        if matrice[y][x] == 2:     # mur
+        if matrice[y][x] in [2, 10, 11, 12, 13, 14, 15, 16, 17]:     # mur
             self.etat -= 1
 
         elif matrice[y][x] == 0:   # sol

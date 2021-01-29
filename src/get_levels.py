@@ -42,6 +42,36 @@ def interpretation(car):
     if car == "$":
         return 9
 
+    if car == "L":
+        return 10
+
+    if car == "/":
+        return 11
+
+    if car == "]":
+        return 12
+
+    if car == "[":
+        return 13
+
+    if car == "T":
+        return 14
+
+    if car == "t":
+        return 15
+
+    if car == "{":
+        return 16
+
+    if car == "}":
+        return 17
+
+    if car == "-":
+        return 18
+
+    if car == "|":
+        return 19
+
     return 0
 
 class Level:
