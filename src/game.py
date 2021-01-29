@@ -49,12 +49,14 @@ def play_game(screen, perso, mat, images):
         for event in list_event:
                 if event.type == pg.QUIT:
                     running = False
+                    return 2
                 elif event.type == pg.KEYDOWN:
                     has_changed = True
                     # compteur += 1
 
                     if event.key == pg.K_q:
                         running = False
+                        return 2
                     # if list_pressed[pg.K_UP]:
                     #     perso.deplacement((0,-1), mat)
                     # if event.key == pg.K_DOWN:

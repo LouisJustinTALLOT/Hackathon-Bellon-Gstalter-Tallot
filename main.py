@@ -24,7 +24,8 @@ images = [pg.image.load("images/sol.png"),
           pg.image.load("images/dollar.png")
 ] #images à afficher
 messages = [pg.image.load("images/perdu.png"),
-            pg.image.load("images/bravo.png")
+            pg.image.load("images/bravo.png"),
+            pg.image.load("images/seeya.png")
 ] #bravo et perdu
 
 condition = True
@@ -43,6 +44,11 @@ while condition: #on évolue niveau par niveau
         display.gagne_ou_perdu(screen, messages, 0)
         pg.display.update()
         break
+    if p == 2:
+        display.gagne_ou_perdu(screen, messages, 2)
+        pg.display.update()
+        break
+
     ct += 1 #on va lancer le niveau suivant
     if ct == longueur:
         display.gagne_ou_perdu(screen, messages, 1)
