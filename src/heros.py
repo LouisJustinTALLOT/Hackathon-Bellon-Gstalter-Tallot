@@ -10,7 +10,7 @@ class Heros:
         self.etat = 100
         self.faim = 100
         self.escalier = False
-        self.eppe = False
+        self.epee = False
         
 
     # def affiche_heros(self, screen):
@@ -62,7 +62,7 @@ class Heros:
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
-            self.epee = true
+            self.epee = True
 
 
 
