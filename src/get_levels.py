@@ -83,6 +83,9 @@ def interpretation(car):
 
     if car == "~":
         return 23
+    
+    if car == ":":
+        return 39
 
     return 0
 

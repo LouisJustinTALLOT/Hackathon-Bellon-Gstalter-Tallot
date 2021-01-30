@@ -52,7 +52,10 @@ images = [pg.image.load("images/sol.png"),
           pg.image.load("images/eau_12.png"),
           pg.image.load("images/eau_13.png"),
           pg.image.load("images/eau_14.png"),
-          pg.image.load("images/eau_15.png")
+          pg.image.load("images/eau_15.png"),
+          pg.image.load("images/herbe.png"),
+          pg.image.load("images/herbe_1.png"),
+          pg.image.load("images/herbe_2.png"),
 ] #images à afficher
 messages = [pg.image.load("images/perdu.png"),
             pg.image.load("images/bravo.png"),
