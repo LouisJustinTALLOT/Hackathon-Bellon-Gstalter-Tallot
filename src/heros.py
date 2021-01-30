@@ -84,10 +84,14 @@ class Heros:
             self.precedent = 0
 
         elif matrice[y][x] == 20: #couloir
-            matrice[y][x] = 1
-            matrice[self.y][self.x] = self.precedent
-            self.x, self.y = x, y
-            self.precedent = 20
+            if self.precedent in [20, 6]:
+                matrice[y][x] = 1
+                matrice[self.y][self.x] = self.precedent
+                self.x, self.y = x, y
+                self.precedent = 20
+            else:
+                self.etat -= 1
+
         elif matrice[y][x] == 22:   # clé
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
