@@ -75,6 +75,9 @@ def interpretation(car):
     if car == "&":
         return 20
 
+    if car == "_":
+        return 21
+
     return 0
 
 class Level:
