@@ -40,6 +40,12 @@ def affichage(screen, matrice, images, perso:heros.Heros):
 
     textsurface4 = myfont.render('ETAT : '+str(perso.etat), False, (255, 255, 255))
     screen.blit(textsurface4,(9*m,16*(n+2)))
+
+    if perso.epee:
+        screen.blit(images[8], (11*m, 16*(n+2)))
+    else:
+        screen.blit(images[21], (11*m, 16*(n+2)))
+
     if perso.argent:
         screen.blit(images[9], (13*m+16, 16*(n+2)))
         textsurface5 = myfont.render(str(perso.argent), False, (255, 255, 255))
