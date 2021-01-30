@@ -72,7 +72,7 @@ class Heros:
             matrice[y][x] = 1
             self.x, self.y = x, y
             self.epee = True
-            self.score += 10
+            self.score += 50
             self.precedent = 0
 
         elif matrice[y][x] == 9:   # or
