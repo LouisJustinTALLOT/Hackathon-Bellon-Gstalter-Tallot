@@ -1,6 +1,6 @@
 |Numéro|Symbole dans le .txt|Résultat dans le jeu|
 |------|--------------------|--------------------|
-|0| |sol_vide|
+|0| |sol|
 |1|`@`|personnage|
 |2|`#`|mur plein carré|
 |3|`E`|escalier -> niveau++|
@@ -21,5 +21,6 @@
 |18|`-`|mur horizontal|
 |19|`|`|mur vertical|
 |20|`&`|couloir|
+|21|`_`|noir total|
 
 <!-- |13|``|| -->
