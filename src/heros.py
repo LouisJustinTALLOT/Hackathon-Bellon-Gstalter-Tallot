@@ -37,6 +37,13 @@ class Heros:
                 matrice[y][x] = 1
                 self.x, self.y = x, y
                 self.precedent = 0
+        
+        elif matrice[y][x] == 21:   # sol sombre
+            if self.precedent != 20:
+                matrice[self.y][self.x] = self.precedent
+                matrice[y][x] = 1
+                self.x, self.y = x, y
+                self.precedent = 21
 
         elif matrice[y][x] == 6:   # porte
             matrice[self.y][self.x] = self.precedent

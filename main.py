@@ -52,6 +52,8 @@ perso = heros.Heros(x0, y0)
 while condition: #on évolue niveau par niveau
     mat, x0, y0 = game.init_level(list_levels, ct)
     perso.x, perso.y = x0, y0
+    perso.x0, perso.y0 = x0, y0
+    
     n, m = len(mat), len(mat[0])
     screen = display.init(m, n)
     p = game.play_game(screen, perso, mat, images)
