@@ -6,12 +6,15 @@ import random as rd
 sys.path.insert(1, './src')
 
 class Heros:
+    ETAT_MAX = 100
+    FAIM_MAX = 100
+    
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
         self.vie = 3
-        self.etat = 100
-        self.faim = 100
+        self.etat = self.ETAT_MAX
+        self.faim = self.FAIM_MAX
         self.escalier = False
         self.epee = False
         self.clef = False

@@ -72,12 +72,12 @@ def play_game(screen, perso, mat, images):
             return 0 #game_over
         if perso.etat <= 0 or perso.faim <= 0:
             perso.vie -= 1
-            perso.faim = 100
-            perso.etat = 100
+            perso.faim = perso.FAIM_MAX
+            perso.etat = perso.ETAT_MAX
             perso.epee = False
         if compteur == 10:
             compteur = 0
-            if perso.etat < 100:
+            if perso.etat < perso.ETAT_MAX:
                 perso.etat += 1
             perso.faim -= 5
     return 0
