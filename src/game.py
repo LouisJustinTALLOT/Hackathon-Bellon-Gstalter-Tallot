@@ -76,7 +76,11 @@ def play_game(screen, perso:heros.Heros, mat, images):
             perso.etat = perso.ETAT_MAX
             perso.epee = False
             perso.clef = False
-            pg.time.wait(1000)
+            mat[perso.y][perso.x] = perso.precedent
+            perso.x, perso.y = perso.x0, perso.y0
+            mat[perso.y][perso.x] = 1
+            
+            # pg.time.wait(1000)
 
         if compteur == 10:
             compteur = 0
