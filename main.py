@@ -35,7 +35,8 @@ images = [pg.image.load("images/sol.png"),
           pg.image.load("images/mur_horizontal.png"), 
           pg.image.load("images/mur_vertical.png"),
           pg.image.load("images/couloir.png"),
-          pg.image.load("images/noir.png")
+          pg.image.load("images/noir.png"),
+          pg.image.load("images/clef.png")
 ] #images à afficher
 messages = [pg.image.load("images/perdu.png"),
             pg.image.load("images/bravo.png"),

@@ -22,3 +22,4 @@
 |19|`|`|mur vertical|
 |20|`&`|couloir|
 |21|`_`|noir total|
+|22|`c`|clé|

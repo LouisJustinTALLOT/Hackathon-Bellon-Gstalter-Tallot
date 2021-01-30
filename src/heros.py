@@ -14,6 +14,7 @@ class Heros:
         self.faim = 100
         self.escalier = False
         self.epee = False
+        self.clef = False
         self.score = 0
         self.argent = 0
         self.precedent = 0
@@ -87,3 +88,10 @@ class Heros:
             matrice[self.y][self.x] = self.precedent
             self.x, self.y = x, y
             self.precedent = 20
+        elif matrice[y][x] == 22:   # clé
+            matrice[self.y][self.x] = 0
+            matrice[y][x] = 1
+            self.x, self.y = x, y
+            self.clef = True
+            self.score += 10
+            self.precedent = 0
