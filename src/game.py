@@ -61,7 +61,7 @@ def play_game(screen, perso:heros.Heros, mat, images):
                         return 2
  
         increment_aleatoire = (increment_aleatoire + 1 )%2
-        increment_aleatoire_2 = (increment_aleatoire_2 + 1) %2
+        increment_aleatoire_2 = (increment_aleatoire_2 + 1) %5
         # on fait bouger l'eau
         n, m = len(mat), len(mat[0])
         # n hauteur, m longueur
@@ -69,12 +69,12 @@ def play_game(screen, perso:heros.Heros, mat, images):
             for j in range(m):
                 case = mat[i][j]
                 if case in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]:
-                    case += increment_aleatoire
+                    case += (increment_aleatoire==0)
                     if case > 38:
                         case = 23
                 
                 elif case in [39, 40, 41]:
-                    case += increment_aleatoire_2
+                    case += (increment_aleatoire_2==0)
                     if case > 41:
                         case = 39
 
