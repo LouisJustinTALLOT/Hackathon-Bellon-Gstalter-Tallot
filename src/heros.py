@@ -14,6 +14,7 @@ class Heros:
         self.epee = False
         self.score = 0
         self.argent = 0
+        self.precedent = 0
         
 
     # def affiche_heros(self, screen):
@@ -26,18 +27,23 @@ class Heros:
         y = self.y
         x += direction[0]
         y += direction[1]
-        if matrice[y][x] in [2, 10, 11, 12, 13, 14, 15, 16, 17]:     # mur
+
+        if matrice[y][x] in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]:     # mur
             self.etat -= 1
 
         elif matrice[y][x] == 0:   # sol
-            matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
-            self.x, self.y = x, y
+            if self.precedent != 20:
+                matrice[self.y][self.x] = self.precedent
+                matrice[y][x] = 1
+                self.x, self.y = x, y
+                self.precedent = 0
 
         elif matrice[y][x] == 6:   # porte
-            matrice[self.y][self.x] = 0
-            self.x, self.y = x + direction[0], y + direction[1]
+            matrice[self.y][self.x] = self.precedent
+            # self.x, self.y = x + direction[0], y + direction[1]
+            self.x, self.y = x, y
             matrice[self.y][self.x] = 1
+            self.precedent = 6
 
         elif matrice[y][x] == 3:   # escalier
             self.escalier = True
@@ -63,6 +69,7 @@ class Heros:
             self.x, self.y = x, y
             self.etat += 10
             self.score += 5
+            self.precedent = 0
 
         elif matrice[y][x] == 8:   # épée
             matrice[self.y][self.x] = 0
@@ -70,6 +77,7 @@ class Heros:
             self.x, self.y = x, y
             self.epee = True
             self.score += 10
+            self.precedent = 0
         
         elif matrice[y][x] == 9:   # or
             matrice[self.y][self.x] = 0
@@ -79,3 +87,8 @@ class Heros:
             self.argent += rd.randint(1,20)
             self.precedent = 0
 
+        elif matrice[y][x] == 20: #couloir
+            matrice[y][x] = 1
+            matrice[self.y][self.x] = self.precedent 
+            self.x, self.y = x, y
+            self.precedent = 20
