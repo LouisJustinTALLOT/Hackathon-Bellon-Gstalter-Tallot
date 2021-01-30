@@ -111,7 +111,7 @@ class Heros:
             self.score += 10
             self.precedent = 0
 
-        elif matrice[y][x] == 23: # eau
+        elif matrice[y][x] in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
             self.etat -= self.ETAT_MAX
             matrice[self.y][self.x] = self.precedent
             self.x, self.y = self.x0, self.y0
