@@ -16,7 +16,7 @@ pg.display.set_caption('Rogue')
 clock = pg.time.Clock()
 images = [pg.image.load("images/sol.png"), 
           pg.image.load("images/heros.png"), 
-          pg.image.load("images/mur.png"),
+          pg.image.load("images/briques.png"),
           pg.image.load("images/escalier.png"),
           pg.image.load("images/pomme.png"),
           pg.image.load("images/monstre.png"),
