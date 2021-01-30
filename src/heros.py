@@ -99,3 +99,11 @@ class Heros:
             self.clef = True
             self.score += 10
             self.precedent = 0
+
+        elif matrice[y][x] == 23: # eau
+            self.etat -= self.ETAT_MAX
+            matrice[self.y][self.x] = self.precedent
+            self.x, self.y = self.x0, self.y0
+            matrice[self.y][self.x] = 1
+
+            self.precedent = 0
