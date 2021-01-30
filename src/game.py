@@ -3,7 +3,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame as pg
 import numpy as np
 
-# fichiers maisons
+# fichiers maison
 import src.get_levels as gl
 import src.display as display
 import src.heros as heros
@@ -21,7 +21,7 @@ def play_game(screen, perso, mat, images):
     compteur = 0
     delta_t = 150
     while running:
-        
+
         list_event, list_pressed = pg.event.get(), pg.key.get_pressed()
 
         if list_pressed[pg.K_UP]:
@@ -60,14 +60,7 @@ def play_game(screen, perso, mat, images):
                     if event.key == pg.K_q:
                         running = False
                         return 2
-                    # if list_pressed[pg.K_UP]:
-                    #     perso.deplacement((0,-1), mat)
-                    # if event.key == pg.K_DOWN:
-                    #     perso.deplacement((0,1), mat)
-                    # if event.key == pg.K_RIGHT:
-                    #     perso.deplacement((1,0), mat)
-                    # if event.key == pg.K_LEFT:
-                    #     perso.deplacement((-1,0), mat)
+
         if has_changed:
             display.affichage(screen, mat, images,perso)
             has_changed = False

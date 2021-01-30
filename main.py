@@ -3,7 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame as pg
 
-# fichiers maisons
+# fichiers maison
 import src.get_levels as gl
 import src.display as display
 import src.heros as heros
