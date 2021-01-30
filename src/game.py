@@ -19,7 +19,9 @@ def play_game(screen, perso:heros.Heros, mat, images):
     running = True
     has_changed = True
     compteur = 0
-    delta_t = 150
+    delta_t = 50
+    increment_aleatoire = 0
+
     while running:
 
         list_event, list_pressed = pg.event.get(), pg.key.get_pressed()
@@ -27,25 +29,21 @@ def play_game(screen, perso:heros.Heros, mat, images):
         if list_pressed[pg.K_UP]:
             has_changed = True
             perso.deplacement((0,-1), mat)
-            pg.time.wait(delta_t)
             compteur += 1
 
         if list_pressed[pg.K_DOWN]:
             has_changed = True
             perso.deplacement((0,1), mat)
-            pg.time.wait(delta_t)
             compteur += 1
 
         if list_pressed[pg.K_RIGHT]:
             has_changed = True
             perso.deplacement((1,0), mat)
-            pg.time.wait(delta_t)
             compteur += 1
 
         if list_pressed[pg.K_LEFT]:
             has_changed = True
             perso.deplacement((-1,0), mat)
-            pg.time.wait(delta_t)
             compteur += 1
 
 
@@ -60,11 +58,30 @@ def play_game(screen, perso:heros.Heros, mat, images):
                     if event.key == pg.K_q:
                         running = False
                         return 2
+ 
+        increment_aleatoire = (increment_aleatoire + 1 )%2
+        # on fait bouger l'eau
+        n, m = len(mat), len(mat[0])
+        # n hauteur, m longueur
+        for i in range(n):
+            for j in range(m):
+                case = mat[i][j]
+                if case in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]:
+                    case += increment_aleatoire
+                    if case > 38:
+                        case = 23
+                    mat[i][j] = case
+
+        if has_changed or increment_aleatoire :
+            display.affichage(screen, mat, images,perso)
+            pg.display.update()
+        pg.time.wait(delta_t)
 
         if has_changed:
-            display.affichage(screen, mat, images,perso)
+            # display.affichage(screen, mat, images,perso)
             has_changed = False
-            pg.display.update()
+            # pg.display.update()
+            
         if perso.escalier:
             perso.escalier = False
             return 1 #on va passer au niveau suivant
