@@ -1,5 +1,6 @@
 import pygame as pg
 import sys
+import random as rd
 sys.path.insert(1, './src')
 
 class Heros:
@@ -12,6 +13,7 @@ class Heros:
         self.escalier = False
         self.epee = False
         self.score = 0
+        self.argent = 0
         
 
     # def affiche_heros(self, screen):
@@ -74,5 +76,6 @@ class Heros:
             matrice[y][x] = 1
             self.x, self.y = x, y
             self.score += 20
-
+            self.argent += rd.randint(1,20)
+            self.precedent = 0
 
