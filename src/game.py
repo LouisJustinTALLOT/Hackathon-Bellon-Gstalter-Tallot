@@ -15,7 +15,7 @@ def init_level(list_levels, i):
     x0, y0 = level.depart_heros_x, level.depart_heros_y
     return [mat, x0, y0]
 
-def play_game(screen, perso, mat, images):
+def play_game(screen, perso:heros.Heros, mat, images):
     running = True
     has_changed = True
     compteur = 0
@@ -75,6 +75,9 @@ def play_game(screen, perso, mat, images):
             perso.faim = perso.FAIM_MAX
             perso.etat = perso.ETAT_MAX
             perso.epee = False
+            perso.clef = False
+            pg.time.wait(1000)
+
         if compteur == 10:
             compteur = 0
             if perso.etat < perso.ETAT_MAX:

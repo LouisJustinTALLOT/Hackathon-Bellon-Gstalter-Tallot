@@ -12,6 +12,7 @@ class Heros:
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
+        self.x0, self.y0 = x, y # les positions initiales pour respawn
         self.vie = 3
         self.etat = self.ETAT_MAX
         self.faim = self.FAIM_MAX
