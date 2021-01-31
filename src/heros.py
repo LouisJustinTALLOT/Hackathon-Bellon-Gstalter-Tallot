@@ -196,133 +196,138 @@ class Monstre:
         prochain = matrice[y][x]
 
         if prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 48]:     # mur
-            self.etat -= 1
+            # self.etat -= 1
+            pass # monstres immortels
 
         elif prochain == 0:   # sol
             if self.precedent != 20:
                 matrice[self.y][self.x] = self.precedent
-                matrice[y][x] = 1
+                matrice[y][x] = 5
                 self.x, self.y = x, y
                 self.precedent = 0
         
         elif prochain == 21:   # sol sombre
             if self.precedent != 20:
                 matrice[self.y][self.x] = self.precedent
-                matrice[y][x] = 1
+                matrice[y][x] = 5
                 self.x, self.y = x, y
                 self.precedent = 21
 
         elif prochain in [43, 44]:   # glace
             if self.precedent != 20:
                 matrice[self.y][self.x] = self.precedent
-                matrice[y][x] = 1
+                matrice[y][x] = 5
                 self.x, self.y = x, y
                 self.precedent = prochain
-                pg.time.wait(50)
+                # pg.time.wait(50)
 
         elif prochain == 6:   # porte
             matrice[self.y][self.x] = self.precedent
             self.x, self.y = x, y
-            matrice[self.y][self.x] = 1
+            matrice[self.y][self.x] = 5
             self.precedent = 6
 
         elif prochain == 3:   # escalier
-            self.escalier = True
-            self.score += 100
+            pass # les monstres ne nous suivent pas au niveau suivant
+            # self.escalier = True
+            # self.score += 100
 
         elif prochain == 4:   # pomme
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
+            matrice[y][x] = 5
             self.x, self.y = x, y
-            self.faim += 10
-            self.score += 5
+            # self.faim += 10
+            # self.score += 5
+            self.precedent = 4
 
         elif prochain == 5:   # monstre
-            if self.epee:
-                matrice[y][x] = 0
-                self.score += 30
-            else:
-                self.etat -= 20
+            pass # pas de combats entre monstres
+            # if self.epee:
+            #     matrice[y][x] = 0
+            #     self.score += 30
+            # else:
+            #     self.etat -= 20
 
         elif prochain == 7:   # potion
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
+            matrice[y][x] = 5
             self.x, self.y = x, y
             self.etat += 10
-            self.score += 5
-            self.precedent = 0
+            # self.score += 5
+            self.precedent = 7
 
         elif prochain == 8:   # épée
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
+            matrice[y][x] = 5
             self.x, self.y = x, y
-            self.epee = True
-            self.score += 50
-            self.precedent = 0
+            # self.epee = True
+            # self.score += 50
+            self.precedent = 8
 
         elif prochain == 9:   # or
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
+            matrice[y][x] = 5
             self.x, self.y = x, y
-            self.score += 20
-            self.argent += rd.randint(1,20)
-            self.precedent = 0
+            # self.score += 20
+            # self.argent += rd.randint(1,20)
+            self.precedent = 9
 
         elif prochain == 20:  # couloir
             if self.precedent in [20, 6]:
-                matrice[y][x] = 1
+                matrice[y][x] = 5
                 matrice[self.y][self.x] = self.precedent
                 self.x, self.y = x, y
                 self.precedent = 20
-            else:
-                self.etat -= 1
+            # else:
+            #     self.etat -= 1
 
         elif prochain == 22:   # clé
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
+            matrice[y][x] = 5
             self.x, self.y = x, y
-            self.clef = True
-            self.score += 10
-            self.precedent = 0
+            # self.clef = True
+            # self.score += 10
+            self.precedent = 22
 
         elif prochain == 45 : # coffre
             # si on a la clé, ça ouvre le coffre et il disparaît
             # sinon rien
             if self.clef:
-                self.score += 100
-                self.clef = False
+                # self.score += 100
+                # self.clef = False
                 matrice[self.y][self.x] = 0
-                matrice[y][x] = 1
+                matrice[y][x] = 5
                 self.x, self.y = x, y
                 self.precedent = 0
-                self.argent += rd.randint(50,150)
+                # self.argent += rd.randint(50,150)
 
         elif prochain == 42:  # fusée
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
+            matrice[y][x] = 5
             self.x, self.y = x, y
-            self.fusee = 3
-            self.compteur_fusee = 250
-            self.score += 10
-            self.precedent = 0
+            # self.fusee = 3
+            # self.compteur_fusee = 250
+            # self.score += 10
+            self.precedent = 42
 
         elif prochain == 47:   # potion pour nager
             matrice[self.y][self.x] = 0
-            matrice[y][x] = 1
+            matrice[y][x] = 5
             self.x, self.y = x, y
-            self.nageur = True
-            self.score += 10
-            self.precedent = 0
+            # self.nageur = True
+            # self.score += 10
+            self.precedent = 47
 
         elif prochain in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
-            if self.precedent != 20:
-                matrice[self.y][self.x] = self.precedent
-                if not self.nageur:
-                    self.etat -= 2*self.ETAT_MAX    # 2* sinon si on a pris la potion juste avant il se noie mais perd pas de vie...
-                    self.x, self.y = self.x0, self.y0
-                    self.precedent = 0
-                else:                
-                    self.x, self.y = x, y
-                    self.precedent = prochain
-                matrice[self.y][self.x] = 1
+            pass # pour l'instant, les monstres ne vont pas dans l'eau
+            # if self.precedent != 20:
+            #     matrice[self.y][self.x] = self.precedent
+            #     if not self.nageur:
+            #         self.etat -= 2*self.ETAT_MAX    # 2* sinon si on a pris la potion juste avant il se noie mais perd pas de vie...
+            #         self.x, self.y = self.x0, self.y0
+            #         self.precedent = 0
+            #     else:                
+            #         self.x, self.y = x, y
+            #         self.precedent = prochain
+            #     matrice[self.y][self.x] = 1
             
