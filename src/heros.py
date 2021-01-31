@@ -123,6 +123,19 @@ class Heros:
             self.score += 10
             self.precedent = 0
 
+        elif prochain == 45 : # coffre
+            # si on a la clé, ça ouvre le coffre et il disparaît
+            # sinon rien
+            if self.clef:
+                self.score += 100
+                self.clef = False
+                matrice[self.y][self.x] = 0
+                matrice[y][x] = 1
+                self.x, self.y = x, y
+                self.precedent = 0
+                self.argent += rd.randint(50,150)
+
+
         elif prochain == 42:  # fusée
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
