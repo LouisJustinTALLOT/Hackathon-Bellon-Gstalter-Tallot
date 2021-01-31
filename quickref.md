@@ -19,7 +19,7 @@
 |16|`{`|![image](images/mur_T_droit.png)|mur_T_droit|
 |17|`}`|![image](images/mur_T_gauche.png)|mur_T_gauche|
 |18|`-`|![image](images/mur_horizontal.png)|mur horizontal|
-|19|`|`|![image](images/mur_vertical.png)|mur vertical|
+|19|`I`|![image](images/mur_vertical.png)|mur vertical|
 |20|`&`|![image](images/couloir.png)|couloir|
 |21|`_`|![image](images/noir.png)|noir total|
 |22|`c`|![image](images/clef.png)|clé|

@@ -69,7 +69,7 @@ def interpretation(car):
     if car == "-":
         return 18
 
-    if car == "|":
+    if car == "I":
         return 19
 
     if car == "&":
