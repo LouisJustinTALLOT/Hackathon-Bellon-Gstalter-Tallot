@@ -29,3 +29,4 @@
 |43|`g`|![image](images/glace.png)|glace|
 |45|`C`|![image](images/coffre.png)|coffre|
 |46|`?`|![image](images/mystere.png)|case mystère|
+|47|`n`|![image](images/potion2.png)|potion 2 pour nager|
