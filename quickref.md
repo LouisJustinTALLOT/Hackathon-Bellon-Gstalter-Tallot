@@ -1,31 +1,31 @@
-|Numéro|Symbole dans le .txt|Résultat dans le jeu|
-|------|--------------------|--------------------|
-|0| |sol|
-|1|`@`|personnage|
-|2|`#`|mur plein carré|
-|3|`E`|escalier -> niveau++|
-|4|`o`|pomme|
-|5|`M`|monstre|
-|6|`P`|porte|
-|7|`h`|potion|
-|8|`!`|épée|
-|9|`$`|pièce|
-|10|`L`|mur_coin_haut_droit|
-|11|`/`|mur_coin_haut_gauche|
-|12|`]`|mur_coin_bas_gauche|
-|13|`[`|mur_coin_bas_droit|
-|14|`T`|mur_T_normal|
-|15|`t`|mur_T_inv|
-|16|`{`|mur_T_droit|
-|17|`}`|mur_T_gauche|
-|18|`-`|mur horizontal|
-|19|`|`|mur vertical|
-|20|`&`|couloir|
-|21|`_`|noir total|
-|22|`c`|clé|
-|23|`~`|eau|
-|39|`:`|herbe|
-|42|`>`|fusée|
-|43|`g`|glace|
-|45|`C`|coffre|
-|46|`?`|case mystère|
+|Numéro|Symbole dans le .txt|Image|Résultat dans le jeu|
+|------|--------------------|-----|--------------------|
+| 0|` `|![image](images/sol.png)|sol|
+| 1|`@`|![image](images/heros.png)|personnage|
+| 2|`#`|![image](images/briques.png)|mur plein carré|
+| 3|`E`|![image](images/escalier.png)|escalier -> niveau++|
+| 4|`o`|![image](images/pomme.png)|pomme|
+| 5|`M`|![image](images/monstre.png)|monstre|
+| 6|`P`|![image](images/porte.png)|porte|
+| 7|`h`|![image](images/potion.png)|potion|
+| 8|`!`|![image](images/epee.png)|épée|
+| 9|`$`|![image](images/dollar.png)|pièce|
+|10|`L`|![image](images/mur_coin_haut_droit.png)|mur_coin_haut_droit|
+|11|`/`|![image](images/mur_coin_haut_gauche.png)|mur_coin_haut_gauche|
+|12|`]`|![image](images/mur_coin_bas_gauche.png)|mur_coin_bas_gauche|
+|13|`[`|![image](images/mur_coin_bas_droit.png)|mur_coin_bas_droit|
+|14|`T`|![image](images/mur_T_normal.png)|mur_T_normal|
+|15|`t`|![image](images/mur_T_inv.png)|mur_T_inv|
+|16|`{`|![image](images/mur_T_droit.png)|mur_T_droit|
+|17|`}`|![image](images/mur_T_gauche.png)|mur_T_gauche|
+|18|`-`|![image](images/mur_horizontal.png)|mur horizontal|
+|19|`|`|![image](images/mur_vertical.png)|mur vertical|
+|20|`&`|![image](images/couloir.png)|couloir|
+|21|`_`|![image](images/noir.png)|noir total|
+|22|`c`|![image](images/clef.png)|clé|
+|23|`~`|![image](images/eau.png)|eau|
+|39|`:`|![image](images/herbe.png)|herbe|
+|42|`>`|![image](images/fusee.png)|fusée|
+|43|`g`|![image](images/glace.png)|glace|
+|45|`C`|![image](images/coffre.png)|coffre|
+|46|`?`|![image](images/mystere.png)|case mystère|
