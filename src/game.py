@@ -90,28 +90,29 @@ def play_game(screen, perso:heros.Heros, mat, images):
         pg.time.wait(delta_t//perso.fusee)
 
         if has_changed:
-            # display.affichage(screen, mat, images,perso)
+            # display.affichage(screen, mat, images, perso)
             has_changed = False
             # pg.display.update()
             
         if perso.escalier:
             perso.escalier = False
-            return 1 #on va passer au niveau suivant
+            return 1 # on va passer au niveau suivant
         if perso.vie == 0:
-            return 0 #game_over
+            return 0 # game_over
         if perso.etat <= 0 or perso.faim <= 0:
             perso.vie -= 1
             perso.faim = perso.FAIM_MAX
             perso.etat = perso.ETAT_MAX
             perso.epee = False
             perso.clef = False
+            compteur = 0
             mat[perso.y][perso.x] = perso.precedent
             perso.x, perso.y = perso.x0, perso.y0
             mat[perso.y][perso.x] = 1
             
             # pg.time.wait(1000)
 
-        if compteur == 10:
+        if compteur == 15:
             compteur = 0
             if perso.etat < perso.ETAT_MAX:
                 perso.etat += 1
