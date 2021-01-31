@@ -30,7 +30,7 @@ def affichage(screen, matrice, images, perso:heros.Heros):
     black_rect = pg.Rect(0, 16*n, 16*m, 16*4)
     pg.draw.rect(screen, (0, 0, 0), black_rect)
 
-    textsurface = myfont.render('LIFE : '+str(perso.vie), False, (255, 255, 255))
+    textsurface = myfont.render('VIE : '+str(perso.vie), False, (255, 255, 255))
     screen.blit(textsurface,(3*m,16*(n+2)))
 
     textsurface2 = myfont.render('FAIM : '+str(perso.faim), False, (255, 255, 255))
@@ -52,13 +52,17 @@ def affichage(screen, matrice, images, perso:heros.Heros):
     else:
         screen.blit(images[21], (12*m, 16*(n+2)))
 
-    if perso.argent:
-        screen.blit(images[9], (13*m+16, 16*(n+2)))
-        textsurface5 = myfont.render(str(perso.argent), False, (255, 255, 255))
-        screen.blit(textsurface5,(13*m,16*(n+2)))
-
+    if perso.fusee == 3:
+        screen.blit(images[42], (13*m, 16*(n+2)))
     else:
-        screen.blit(images[21], (13*m+16, 16*(n+2)))
+        screen.blit(images[21], (13*m, 16*(n+2)))
+
+    if perso.argent:
+        screen.blit(images[9], (14*m+16, 16*(n+2)))
+        textsurface5 = myfont.render(str(perso.argent), False, (255, 255, 255))
+        screen.blit(textsurface5,(14*m,16*(n+2)))
+    else:
+        screen.blit(images[21], (14*m+16, 16*(n+2)))
 
 def gagne_ou_perdu(screen, messages, i, perso:heros.Heros):
     screen = pg.display.set_mode((400, 350))

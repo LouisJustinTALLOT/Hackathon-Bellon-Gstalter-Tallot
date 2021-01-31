@@ -19,7 +19,7 @@ def play_game(screen, perso:heros.Heros, mat, images):
     running = True
     has_changed = True
     compteur = 0
-    delta_t = 50
+    delta_t = 100
     increment_aleatoire = 0
     increment_aleatoire_2 = 0
     increment_aleatoire_3 = 0
@@ -88,33 +88,38 @@ def play_game(screen, perso:heros.Heros, mat, images):
                 mat[i][j] = case
 
         if has_changed or increment_aleatoire :
-            display.affichage(screen, mat, images,perso)
+            display.affichage(screen, mat, images, perso)
             pg.display.update()
-        pg.time.wait(delta_t)
+            if perso.fusee == 3:
+                perso.compteur_fusee -= 1
+                if perso.compteur_fusee == 0:
+                    perso.fusee = 1
+        pg.time.wait(delta_t//perso.fusee)
 
         if has_changed:
-            # display.affichage(screen, mat, images,perso)
+            # display.affichage(screen, mat, images, perso)
             has_changed = False
             # pg.display.update()
             
         if perso.escalier:
             perso.escalier = False
-            return 1 #on va passer au niveau suivant
+            return 1 # on va passer au niveau suivant
         if perso.vie == 0:
-            return 0 #game_over
+            return 0 # game_over
         if perso.etat <= 0 or perso.faim <= 0:
             perso.vie -= 1
             perso.faim = perso.FAIM_MAX
             perso.etat = perso.ETAT_MAX
             perso.epee = False
             perso.clef = False
+            compteur = 0
             mat[perso.y][perso.x] = perso.precedent
             perso.x, perso.y = perso.x0, perso.y0
             mat[perso.y][perso.x] = 1
             
             # pg.time.wait(1000)
 
-        if compteur == 10:
+        if compteur == 15:
             compteur = 0
             if perso.etat < perso.ETAT_MAX:
                 perso.etat += 1
