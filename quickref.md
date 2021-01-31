@@ -28,3 +28,4 @@
 |42|`>`|fusée|
 |43|`g`|glace|
 |45|`C`|coffre|
+|46|`?`|case mystère|
