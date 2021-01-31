@@ -111,6 +111,14 @@ class Heros:
             self.score += 10
             self.precedent = 0
 
+        elif matrice[y][x] == 42:  # fusée
+            matrice[self.y][self.x] = 0
+            matrice[y][x] = 1
+            self.x, self.y = x, y
+            self.fusee = 3
+            self.compteur_fusee = 250
+            self.score += 10
+            self.precedent = 0
         elif matrice[y][x] in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
             self.etat -= self.ETAT_MAX
             matrice[self.y][self.x] = self.precedent

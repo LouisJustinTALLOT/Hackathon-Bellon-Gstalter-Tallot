@@ -19,7 +19,7 @@ def play_game(screen, perso:heros.Heros, mat, images):
     running = True
     has_changed = True
     compteur = 0
-    delta_t = 50
+    delta_t = 100
     increment_aleatoire = 0
     increment_aleatoire_2 = 0
 
@@ -81,9 +81,13 @@ def play_game(screen, perso:heros.Heros, mat, images):
                 mat[i][j] = case
 
         if has_changed or increment_aleatoire :
-            display.affichage(screen, mat, images,perso)
+            display.affichage(screen, mat, images, perso)
             pg.display.update()
-        pg.time.wait(delta_t)
+            if perso.fusee == 3:
+                perso.compteur_fusee -= 1
+                if perso.compteur_fusee == 0:
+                    perso.fusee = 1
+        pg.time.wait(delta_t//perso.fusee)
 
         if has_changed:
             # display.affichage(screen, mat, images,perso)
