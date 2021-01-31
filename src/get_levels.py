@@ -101,6 +101,9 @@ def interpretation(car):
 
     if car == "n":
         return 47
+    
+    if car == "+":
+        return 48
 
     return 0
 

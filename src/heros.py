@@ -34,7 +34,7 @@ class Heros:
 
         prochain = matrice[y][x]
 
-        if prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]:     # mur
+        if prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 48]:     # mur
             self.etat -= 1
 
         elif prochain == 0:   # sol
