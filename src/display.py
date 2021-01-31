@@ -1,3 +1,5 @@
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame as pg
 import numpy as np
 from random import randint
@@ -13,7 +15,6 @@ pg.init()
 
 sysfont = pg.font.get_default_font()
 myfont = pg.font.SysFont(None, 20)
-#print("font importées")
 
 def init(n, m):
     screen = pg.display.set_mode((16*n, 16*(m+4)))
@@ -43,6 +44,21 @@ def affichage(screen, matrice, images, perso:heros.Heros):
 
     if perso.epee:
         screen.blit(images[8], (11*m, 16*(n+2)))
+    else:
+        screen.blit(images[21], (11*m, 16*(n+2)))
+
+    if perso.clef:
+        screen.blit(images[22], (12*m, 16*(n+2)))
+    else:
+        screen.blit(images[21], (12*m, 16*(n+2)))
+
+    if perso.argent:
+        screen.blit(images[9], (13*m+16, 16*(n+2)))
+        textsurface5 = myfont.render(str(perso.argent), False, (255, 255, 255))
+        screen.blit(textsurface5,(13*m,16*(n+2)))
+
+    else:
+        screen.blit(images[21], (13*m+16, 16*(n+2)))
 
 def gagne_ou_perdu(screen, messages, i, perso:heros.Heros):
     screen = pg.display.set_mode((400, 350))
@@ -52,9 +68,14 @@ def gagne_ou_perdu(screen, messages, i, perso:heros.Heros):
     textsurface = myfont.render('SCORE : '+str(perso.score), False, (255, 255, 255))
     screen.blit(textsurface,(150,320))
 
-# section de test 
 
-if __name__ == "__main__": 
+
+
+
+
+# section de test
+
+if __name__ == "__main__":
     list_levels = gl.load_all_levels()
     mat = list_levels[0].matrice_niveau
 
@@ -72,6 +93,6 @@ if __name__ == "__main__":
                     running = False
                 elif event.type == pg.KEYDOWN:
                     if event.key == pg.K_q:
-                        running = False       
+                        running = False
         pg.display.update()
     pg.quit()

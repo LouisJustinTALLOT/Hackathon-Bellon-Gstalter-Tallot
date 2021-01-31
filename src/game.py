@@ -1,7 +1,9 @@
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame as pg
 import numpy as np
 
-# fichiers maisons
+# fichiers maison
 import src.get_levels as gl
 import src.display as display
 import src.heros as heros
@@ -13,36 +15,36 @@ def init_level(list_levels, i):
     x0, y0 = level.depart_heros_x, level.depart_heros_y
     return [mat, x0, y0]
 
-def play_game(screen, perso, mat, images):
+def play_game(screen, perso:heros.Heros, mat, images):
     running = True
     has_changed = True
     compteur = 0
+    delta_t = 50
+    increment_aleatoire = 0
+    increment_aleatoire_2 = 0
+
     while running:
-        
+
         list_event, list_pressed = pg.event.get(), pg.key.get_pressed()
 
         if list_pressed[pg.K_UP]:
             has_changed = True
             perso.deplacement((0,-1), mat)
-            pg.time.wait(200)
             compteur += 1
 
         if list_pressed[pg.K_DOWN]:
             has_changed = True
             perso.deplacement((0,1), mat)
-            pg.time.wait(200)
             compteur += 1
 
         if list_pressed[pg.K_RIGHT]:
             has_changed = True
             perso.deplacement((1,0), mat)
-            pg.time.wait(200)
             compteur += 1
 
         if list_pressed[pg.K_LEFT]:
             has_changed = True
             perso.deplacement((-1,0), mat)
-            pg.time.wait(200)
             compteur += 1
 
 
@@ -57,18 +59,37 @@ def play_game(screen, perso, mat, images):
                     if event.key == pg.K_q:
                         running = False
                         return 2
-                    # if list_pressed[pg.K_UP]:
-                    #     perso.deplacement((0,-1), mat)
-                    # if event.key == pg.K_DOWN:
-                    #     perso.deplacement((0,1), mat)
-                    # if event.key == pg.K_RIGHT:
-                    #     perso.deplacement((1,0), mat)
-                    # if event.key == pg.K_LEFT:
-                    #     perso.deplacement((-1,0), mat)
-        if has_changed:
+ 
+        increment_aleatoire = (increment_aleatoire + 1 )%2
+        increment_aleatoire_2 = (increment_aleatoire_2 + 1) %5
+        # on fait bouger l'eau
+        n, m = len(mat), len(mat[0])
+        # n hauteur, m longueur
+        for i in range(n):
+            for j in range(m):
+                case = mat[i][j]
+                if case in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]:
+                    case += (increment_aleatoire==0)
+                    if case > 38:
+                        case = 23
+                
+                elif case in [39, 40, 41]:
+                    case += (increment_aleatoire_2==0)
+                    if case > 41:
+                        case = 39
+
+                mat[i][j] = case
+
+        if has_changed or increment_aleatoire :
             display.affichage(screen, mat, images,perso)
-            has_changed = False
             pg.display.update()
+        pg.time.wait(delta_t)
+
+        if has_changed:
+            # display.affichage(screen, mat, images,perso)
+            has_changed = False
+            # pg.display.update()
+            
         if perso.escalier:
             perso.escalier = False
             return 1 #on va passer au niveau suivant
@@ -76,12 +97,19 @@ def play_game(screen, perso, mat, images):
             return 0 #game_over
         if perso.etat <= 0 or perso.faim <= 0:
             perso.vie -= 1
-            perso.faim = 100
-            perso.etat = 100
+            perso.faim = perso.FAIM_MAX
+            perso.etat = perso.ETAT_MAX
             perso.epee = False
+            perso.clef = False
+            mat[perso.y][perso.x] = perso.precedent
+            perso.x, perso.y = perso.x0, perso.y0
+            mat[perso.y][perso.x] = 1
+            
+            # pg.time.wait(1000)
+
         if compteur == 10:
             compteur = 0
-            if perso.etat < 100:
+            if perso.etat < perso.ETAT_MAX:
                 perso.etat += 1
             perso.faim -= 5
     return 0

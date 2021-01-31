@@ -1,5 +1,5 @@
 import os
-from pathlib import Path 
+from pathlib import Path
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -8,7 +8,7 @@ def tableau_vide(n,m):
 
 def interpretation(car):
     """ la fonction qui prend un caractère du niveau en .txt
-    et renvoie un entier en fonction du type représenté par 
+    et renvoie un entier en fonction du type représenté par
     ce caractère
     """
 
@@ -22,25 +22,70 @@ def interpretation(car):
         return 2
 
     if car == 'E': #escalier
-        return 3 
-    
+        return 3
+
     if car == 'o': #nourriture
-        return 4 
+        return 4
 
     if car == 'M': #monstre
         return 5
 
     if car == "P": # porte
         return 6
-        
+
     if car == "h": #potion (healing)
         return 7
-    
+
     if car == "!":
         return 8
 
     if car == "$":
         return 9
+
+    if car == "L":
+        return 10
+
+    if car == "/":
+        return 11
+
+    if car == "]":
+        return 12
+
+    if car == "[":
+        return 13
+
+    if car == "T":
+        return 14
+
+    if car == "t":
+        return 15
+
+    if car == "{":
+        return 16
+
+    if car == "}":
+        return 17
+
+    if car == "-":
+        return 18
+
+    if car == "|":
+        return 19
+
+    if car == "&":
+        return 20
+
+    if car == "_":
+        return 21
+
+    if car == "c":
+        return 22
+
+    if car == "~":
+        return 23
+    
+    if car == ":":
+        return 39
 
     return 0
 
@@ -58,7 +103,7 @@ class Level:
             tableau_niveau = file.readlines()
 
         for i, ligne in enumerate(tableau_niveau) :
-            # print(repr(ligne)) 
+            # print(repr(ligne))
             if ligne[-1]=="\n":
                 tableau_niveau[i] = ligne[:-1] # on fait juste ça pour enlever le \n à la fin de la ligne
 
@@ -85,25 +130,25 @@ def load_all_levels():
     i = 0
 
     for fi in liste_des_fichiers:
-        i += 1 
+        i += 1
         niveau = Level(no=i)
         niveau.load_from_txt("levels/"+fi)
 
         list_levels.append(niveau)
 
     return list_levels
-        
 
 
 
 
-# section de test 
+
+# section de test
 
 if __name__ == "__main__":
     """ la section de tests du module"""
 
     print(os.path.dirname(os.path.realpath(__file__)))
-   
+
     ######
     # a = tableau_vide(3,4)
     # print(a)
