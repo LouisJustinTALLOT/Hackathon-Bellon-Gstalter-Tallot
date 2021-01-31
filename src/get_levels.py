@@ -93,6 +93,9 @@ def interpretation(car):
     if car == "g":
         return 43
 
+    if car == "C":
+        return 45
+
     return 0
 
 class Level:
