@@ -46,12 +46,12 @@ class Heros:
                 self.x, self.y = x, y
                 self.precedent = 21
 
-        elif matrice[y][x] == 42:   # glace
+        elif prochain in [43, 44]:   # glace
             if self.precedent != 20:
                 matrice[self.y][self.x] = self.precedent
                 matrice[y][x] = 1
                 self.x, self.y = x, y
-                self.precedent = 42
+                self.precedent = 43
                 pg.time.wait(50)
 
         elif matrice[y][x] == 6:   # porte

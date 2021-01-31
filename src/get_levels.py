@@ -88,7 +88,7 @@ def interpretation(car):
         return 39
 
     if car == "g":
-        return 42
+        return 43
 
     return 0
 
