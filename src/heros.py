@@ -170,7 +170,7 @@ class Monstre:
     ETAT_MAX = 100
     FAIM_MAX = 100
     
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=0, y=0, aquatique=False):
         self.x = x
         self.y = y
         self.x0, self.y0 = x, y # les positions initiales pour respawn
@@ -180,7 +180,7 @@ class Monstre:
         self.escalier = False
         self.epee = False
         self.clef = False
-        self.nageur = False
+        self.nageur = aquatique
         self.fusee = 1
         self.compteur_fusee = 0
         self.score = 0
@@ -319,15 +319,15 @@ class Monstre:
             self.precedent = 47
 
         elif prochain in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
-            pass # pour l'instant, les monstres ne vont pas dans l'eau
-            # if self.precedent != 20:
-            #     matrice[self.y][self.x] = self.precedent
-            #     if not self.nageur:
-            #         self.etat -= 2*self.ETAT_MAX    # 2* sinon si on a pris la potion juste avant il se noie mais perd pas de vie...
-            #         self.x, self.y = self.x0, self.y0
-            #         self.precedent = 0
-            #     else:                
-            #         self.x, self.y = x, y
-            #         self.precedent = prochain
-            #     matrice[self.y][self.x] = 1
+            # pass # pour l'instant, les monstres ne vont pas dans l'eau
+            if self.precedent != 20:
+                matrice[self.y][self.x] = self.precedent
+                if not self.nageur:
+                    # self.etat -= 2*self.ETAT_MAX    # 2* sinon si on a pris la potion juste avant il se noie mais perd pas de vie...
+                    # self.x, self.y = self.x0, self.y0
+                    self.precedent = 0
+                else:                
+                    self.x, self.y = x, y
+                    self.precedent = prochain
+                matrice[self.y][self.x] = 5
             
