@@ -19,6 +19,7 @@ class Heros:
         self.escalier = False
         self.epee = False
         self.clef = False
+        self.nageur = False
         self.fusee = 1
         self.compteur_fusee = 0
         self.score = 0
@@ -106,7 +107,7 @@ class Heros:
             self.argent += rd.randint(1,20)
             self.precedent = 0
 
-        elif prochain == 20: #couloir
+        elif prochain == 20:  # couloir
             if self.precedent in [20, 6]:
                 matrice[y][x] = 1
                 matrice[self.y][self.x] = self.precedent
@@ -135,7 +136,6 @@ class Heros:
                 self.precedent = 0
                 self.argent += rd.randint(50,150)
 
-
         elif prochain == 42:  # fusée
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
@@ -145,9 +145,23 @@ class Heros:
             self.score += 10
             self.precedent = 0
 
-        elif prochain in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
-            self.etat -= 2*self.ETAT_MAX    # 2* sinon si on a pris la potion juste avant il se noie mais perd pas de vie...
-            matrice[self.y][self.x] = self.precedent
-            self.x, self.y = self.x0, self.y0
-            matrice[self.y][self.x] = 1
+        elif prochain == 47:   # potion pour nager
+            matrice[self.y][self.x] = 0
+            matrice[y][x] = 1
+            self.x, self.y = x, y
+            self.nageur = True
+            self.score += 10
             self.precedent = 0
+
+        elif prochain in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
+            if self.precedent != 20:
+                matrice[self.y][self.x] = self.precedent
+                if not self.nageur:
+                    self.etat -= 2*self.ETAT_MAX    # 2* sinon si on a pris la potion juste avant il se noie mais perd pas de vie...
+                    self.x, self.y = self.x0, self.y0
+                    self.precedent = 0
+                else:                
+                    self.x, self.y = x, y
+                    self.precedent = prochain
+                matrice[self.y][self.x] = 1
+            

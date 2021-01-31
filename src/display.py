@@ -44,25 +44,28 @@ def affichage(screen, matrice, images, perso:heros.Heros):
 
     if perso.epee:
         screen.blit(images[8], (11*m, 16*(n+2)))
-    else:
-        screen.blit(images[21], (11*m, 16*(n+2)))
+    # else:
+    #     screen.blit(images[21], (11*m, 16*(n+2)))
 
     if perso.clef:
         screen.blit(images[22], (12*m, 16*(n+2)))
-    else:
-        screen.blit(images[21], (12*m, 16*(n+2)))
+    # else:
+    #     screen.blit(images[21], (12*m, 16*(n+2)))
 
     if perso.fusee == 3:
         screen.blit(images[42], (13*m, 16*(n+2)))
-    else:
-        screen.blit(images[21], (13*m, 16*(n+2)))
+    # else:
+    #     screen.blit(images[21], (13*m, 16*(n+2)))
+
+    if perso.nageur:
+        screen.blit(images[47], (14*m, 16*(n+2)))
 
     if perso.argent:
-        screen.blit(images[9], (14*m+16, 16*(n+2)))
+        screen.blit(images[9], (15*m+24, 16*(n+2)-1))
         textsurface5 = myfont.render(str(perso.argent), False, (255, 255, 255))
-        screen.blit(textsurface5,(14*m,16*(n+2)))
-    else:
-        screen.blit(images[21], (14*m+16, 16*(n+2)))
+        screen.blit(textsurface5,(15*m,16*(n+2)))
+    # else:
+    #     screen.blit(images[21], (14*m+16, 16*(n+2)))
 
 def gagne_ou_perdu(screen, messages, i, perso:heros.Heros):
     screen = pg.display.set_mode((400, 350))
