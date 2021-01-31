@@ -112,6 +112,8 @@ def play_game(screen, perso:heros.Heros, mat, images):
             perso.etat = perso.ETAT_MAX
             perso.epee = False
             perso.clef = False
+            perso.fusee = 1
+            perso.nageur = False
             compteur = 0
             mat[perso.y][perso.x] = perso.precedent
             perso.x, perso.y = perso.x0, perso.y0
