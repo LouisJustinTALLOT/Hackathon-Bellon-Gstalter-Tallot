@@ -29,17 +29,19 @@ class Heros:
         x += direction[0]
         y += direction[1]
 
-        if matrice[y][x] in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]:     # mur
+        prochain = matrice[y][x]
+
+        if prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]:     # mur
             self.etat -= 1
 
-        elif matrice[y][x] == 0:   # sol
+        elif prochain == 0:   # sol
             if self.precedent != 20:
                 matrice[self.y][self.x] = self.precedent
                 matrice[y][x] = 1
                 self.x, self.y = x, y
                 self.precedent = 0
         
-        elif matrice[y][x] == 21:   # sol sombre
+        elif prochain == 21:   # sol sombre
             if self.precedent != 20:
                 matrice[self.y][self.x] = self.precedent
                 matrice[y][x] = 1
@@ -51,34 +53,34 @@ class Heros:
                 matrice[self.y][self.x] = self.precedent
                 matrice[y][x] = 1
                 self.x, self.y = x, y
-                self.precedent = 43
+                self.precedent = prochain
                 pg.time.wait(50)
 
-        elif matrice[y][x] == 6:   # porte
+        elif prochain == 6:   # porte
             matrice[self.y][self.x] = self.precedent
             self.x, self.y = x, y
             matrice[self.y][self.x] = 1
             self.precedent = 6
 
-        elif matrice[y][x] == 3:   # escalier
+        elif prochain == 3:   # escalier
             self.escalier = True
             self.score += 100
 
-        elif matrice[y][x] == 4:   # pomme
+        elif prochain == 4:   # pomme
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
             self.faim += 10
             self.score += 5
 
-        elif matrice[y][x] == 5:   # monstre
+        elif prochain == 5:   # monstre
             if self.epee:
                 matrice[y][x] = 0
                 self.score += 30
             else:
                 self.etat -= 20
 
-        elif matrice[y][x] == 7:   # potion
+        elif prochain == 7:   # potion
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
@@ -86,7 +88,7 @@ class Heros:
             self.score += 5
             self.precedent = 0
 
-        elif matrice[y][x] == 8:   # épée
+        elif prochain == 8:   # épée
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
@@ -94,7 +96,7 @@ class Heros:
             self.score += 50
             self.precedent = 0
 
-        elif matrice[y][x] == 9:   # or
+        elif prochain == 9:   # or
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
@@ -102,7 +104,7 @@ class Heros:
             self.argent += rd.randint(1,20)
             self.precedent = 0
 
-        elif matrice[y][x] == 20: #couloir
+        elif prochain == 20: #couloir
             if self.precedent in [20, 6]:
                 matrice[y][x] = 1
                 matrice[self.y][self.x] = self.precedent
@@ -111,7 +113,7 @@ class Heros:
             else:
                 self.etat -= 1
 
-        elif matrice[y][x] == 22:   # clé
+        elif prochain == 22:   # clé
             matrice[self.y][self.x] = 0
             matrice[y][x] = 1
             self.x, self.y = x, y
@@ -119,7 +121,7 @@ class Heros:
             self.score += 10
             self.precedent = 0
 
-        elif matrice[y][x] in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
+        elif prochain in [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]: # eau
             self.etat -= self.ETAT_MAX
             matrice[self.y][self.x] = self.precedent
             self.x, self.y = self.x0, self.y0
