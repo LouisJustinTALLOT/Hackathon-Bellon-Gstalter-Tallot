@@ -13,11 +13,20 @@ def init_level(list_levels, i):
     mat = level.matrice_niveau
     bool_matrice = np.ones((len(mat), len(mat[0])))
     x0, y0 = level.depart_heros_x, level.depart_heros_y
-    return [mat, x0, y0]
+    liste_monstres = []
+    n, m = len(mat), len(mat[0])
+    # n hauteur, m longueur
+    for i in range(n):
+        for j in range(m):
+            if mat[i][j] == 5 : # on pourra étendre
+                liste_monstres.append(heros.Monstre(j, i))
+                
+    return mat, x0, y0, liste_monstres
 
-def play_game(screen, perso:heros.Heros, mat, images):
+def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
+    
     running = True
-    has_changed = True
+    has_changed = False
     compteur = 0
     delta_t = 100
     increment_aleatoire = 0
@@ -30,22 +39,22 @@ def play_game(screen, perso:heros.Heros, mat, images):
 
         if list_pressed[pg.K_UP]:
             has_changed = True
-            perso.deplacement((0,-1), mat)
+            perso.deplacement((0,-1), mat, liste_monstres)
             compteur += 1
 
         if list_pressed[pg.K_DOWN]:
             has_changed = True
-            perso.deplacement((0,1), mat)
+            perso.deplacement((0,1), mat, liste_monstres)
             compteur += 1
 
         if list_pressed[pg.K_RIGHT]:
             has_changed = True
-            perso.deplacement((1,0), mat)
+            perso.deplacement((1,0), mat, liste_monstres)
             compteur += 1
 
         if list_pressed[pg.K_LEFT]:
             has_changed = True
-            perso.deplacement((-1,0), mat)
+            perso.deplacement((-1,0), mat, liste_monstres)
             compteur += 1
 
 
@@ -97,9 +106,11 @@ def play_game(screen, perso:heros.Heros, mat, images):
         pg.time.wait(delta_t//perso.fusee)
 
         if has_changed:
-            # display.affichage(screen, mat, images, perso)
             has_changed = False
-            # pg.display.update()
+            # puis on déplace les monstres
+            monstre : heros.Monstre
+            for monstre in liste_monstres :
+                monstre.deplace_vers_heros(mat, perso)
             
         if perso.escalier:
             perso.escalier = False

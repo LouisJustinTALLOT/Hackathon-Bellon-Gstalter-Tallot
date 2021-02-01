@@ -26,7 +26,7 @@ class Heros:
         self.argent = 0
         self.precedent = 0
 
-    def deplacement(self, direction, matrice):
+    def deplacement(self, direction, matrice, liste_monstres):
         x = self.x
         y = self.y
         x += direction[0]
@@ -77,9 +77,14 @@ class Heros:
             self.score += 5
 
         elif prochain == 5:   # monstre
+            monstre : Monstre
+            for i, monstre in enumerate(liste_monstres):
+                if (monstre.x, monstre.y) == (x, y):
+                    break
             if self.epee:
                 matrice[y][x] = 0
                 self.score += 30
+                liste_monstres[i].vie = 0
             else:
                 self.etat -= 20
 
@@ -195,7 +200,10 @@ class Monstre:
 
         prochain = matrice[y][x]
 
-        if prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 48]:     # mur
+        if not self.vie:
+            return
+
+        elif prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 48]:     # mur
             # self.etat -= 1
             pass # monstres immortels
 
@@ -331,3 +339,20 @@ class Monstre:
                     self.precedent = prochain
                 matrice[self.y][self.x] = 5
             
+    def deplace_vers_heros(self,matrice, heros:Heros):
+        # on a x, y du heros
+        # on détermine vers où il est par rapport à nous
+        # et on bouge dans cette direction
+        delta_x = -(self.x-heros.x)
+        delta_y = -(self.y-heros.y)
+
+        if delta_x:
+            dep_x = delta_x//abs(delta_x)
+        else:
+            dep_x = 0
+
+        if delta_y:
+            dep_y = delta_y//abs(delta_y)
+        else:
+            dep_y = 0 
+        self.deplacement((dep_x, dep_y), matrice)

@@ -72,16 +72,17 @@ messages = [pg.image.load("images/perdu.png"),
 condition = True
 ct = 0 #compteur pour les différents niveaux
 longueur = len(list_levels)
-mat, x0, y0 = game.init_level(list_levels, ct)
+mat, x0, y0, liste_monstres = game.init_level(list_levels, ct)
 perso = heros.Heros(x0, y0)
+# perso = heros.Monstre(x0, y0) # pour les tests
 while condition: #on évolue niveau par niveau
-    mat, x0, y0 = game.init_level(list_levels, ct)
+    mat, x0, y0, liste_monstres = game.init_level(list_levels, ct)
     perso.x, perso.y = x0, y0
     perso.x0, perso.y0 = x0, y0
     
     n, m = len(mat), len(mat[0])
     screen = display.init(m, n)
-    p = game.play_game(screen, perso, mat, images)
+    p = game.play_game(screen, perso, mat, images, liste_monstres)
 
     if p == 0: #game_over
         display.gagne_ou_perdu(screen, messages, 0, perso)
