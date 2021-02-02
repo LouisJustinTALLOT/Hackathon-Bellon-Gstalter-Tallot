@@ -8,9 +8,9 @@ import src.get_levels as gl
 import src.display as display
 import src.heros as heros
 
-def init_level(list_levels, i):
+def init_level(list_levels, num):
     """Initialise les variables au début d'un niveau"""
-    level = list_levels[i]
+    level = list_levels[num]
     mat = level.matrice_niveau
     bool_matrice = np.ones((len(mat), len(mat[0])))
     x0, y0 = level.depart_heros_x, level.depart_heros_y
@@ -22,11 +22,11 @@ def init_level(list_levels, i):
     for i in range(n):
         for j in range(m):
             if mat[i][j] == 5 : # on pourra étendre
-                liste_monstres.append(heros.Monstre(j, i, niveau=i+1))
+                liste_monstres.append(heros.Monstre(j, i, niveau=num+1))
             if mat[i][j] == 49:
-                liste_monstres.append(heros.Monstre(j, i, aquatique=True, no=49, niveau=i+1))
+                liste_monstres.append(heros.Monstre(j, i, aquatique=True, no=49, niveau=num+1))
             if mat[i][j] == 50:
-                liste_monstres.append(heros.Monstre(j, i, herbeux=True, no=50, niveau=i+1))
+                liste_monstres.append(heros.Monstre(j, i, herbeux=True, no=50, niveau=num+1))
 
 
                 
@@ -42,6 +42,7 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
     increment_aleatoire_2 = 0
     increment_aleatoire_3 = 0
     compteur_mvt = 0
+    compteur_monstres = 0
 
     while running:
         # la boucle qui tourne dans tout le niveau
@@ -83,7 +84,7 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
                         return 2
  
         # ici, on fait bouger l'herbe, l'eau.....
-        increment_aleatoire = (increment_aleatoire + 1 )%2
+        increment_aleatoire = (increment_aleatoire + 1 ) %2
         increment_aleatoire_2 = (increment_aleatoire_2 + 1) %5
         increment_aleatoire_3 = (increment_aleatoire_3 + 1) %20
         n, m = len(mat), len(mat[0])
@@ -117,10 +118,14 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
                     perso.fusee = 1
 
         # puis on déplace les monstres
-        monstre : heros.Monstre
-        compteur_mvt = (compteur_mvt+1)%2
-        for monstre in liste_monstres :
-            monstre.deplace_vers_heros(mat, perso, compteur_mvt)
+        if not compteur_monstres:
+            monstre : heros.Monstre
+            compteur_mvt = (compteur_mvt+1)%2
+            for monstre in liste_monstres :
+                monstre.deplace_vers_heros(mat, perso, compteur_mvt)
+            compteur_monstres = 2
+        else : 
+            compteur_monstres -= 1
 
         pg.time.wait(delta_t//perso.fusee)
 
