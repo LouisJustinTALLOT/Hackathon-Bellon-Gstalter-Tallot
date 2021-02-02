@@ -207,6 +207,7 @@ class Monstre:
         self.precedent = 0
         self.numero = no
         self.compteur_attaque = 0
+        self.score = True
 
     def deplacement(self, direction, matrice, heros:Heros):
         """On déplace les monstres dans la direction demandée
@@ -222,7 +223,9 @@ class Monstre:
 
         if self.etat <= 0:
             self.vie = 0
-            heros.score += 30
+            if self.score:
+                heros.score += 30
+                self.score = False
 
         if not self.vie:
             matrice[self.y][self.x] = self.precedent
