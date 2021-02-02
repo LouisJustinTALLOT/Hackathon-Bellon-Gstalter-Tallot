@@ -84,7 +84,9 @@ class Heros:
             if self.epee:
                 matrice[y][x] = 0
                 self.score += 30
-                liste_monstres[i].vie = 0
+                monstre.vie = 0
+                monstre.deplacement((0,0), matrice)
+                liste_monstres.pop(i)
             else:
                 self.etat -= 20
 
@@ -201,7 +203,7 @@ class Monstre:
         prochain = matrice[y][x]
 
         if not self.vie:
-            return
+            matrice[self.y][self.x] = self.precedent
 
         elif prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 48]:     # mur
             # self.etat -= 1
@@ -361,5 +363,5 @@ class Monstre:
         else:
             self.deplacement((0, dep_y), matrice)
 
-        if not deja_fait:
+        if rd.random()>0.6 and not deja_fait:
             self.deplace_vers_heros(matrice, heros, (compteur_mvt+1)%2, True)
