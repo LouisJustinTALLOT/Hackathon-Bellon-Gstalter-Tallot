@@ -6,33 +6,39 @@ import random as rd
 sys.path.insert(1, './src')
 
 class Heros:
+    """La classe dont le personnage va être une instance"""
+
     ETAT_MAX = 100
     FAIM_MAX = 100
     
     def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
-        self.x0, self.y0 = x, y # les positions initiales pour respawn
-        self.vie = 3
-        self.etat = self.ETAT_MAX
-        self.faim = self.FAIM_MAX
-        self.escalier = False
-        self.epee = False
-        self.clef = False
-        self.nageur = False
-        self.fusee = 1
-        self.compteur_fusee = 0
-        self.score = 0
-        self.argent = 0
-        self.precedent = 0
+        self.x = x                # position en abscisses
+        self.y = y                # position en ordonnées
+        self.x0, self.y0 = x, y   # les positions initiales pour respawn
+        self.vie = 3              # nombre total de vies
+        self.etat = self.ETAT_MAX # on initialise l'état initial
+        self.faim = self.FAIM_MAX # ainsi que la faim initiale
+        self.escalier = False     # variable pour les changements de niveau
+        self.epee = False         # le perso peut avoir une épée
+        self.clef = False         # une clé
+        self.nageur = False       # il peut savoir nager
+        self.fusee = 1            # peut aller plus vite avec les fusées
+        self.compteur_fusee = 0   # compteur pour la vitesse
+        self.score = 0            # le score qui s'accumule
+        self.argent = 0           # le porte-monnaie
+        self.precedent = 0        # la case où il était précédemment
 
     def deplacement(self, direction, matrice, liste_monstres):
+        """On déplace le personnage dans la direction demandée
+        en respectant certaines règles
+        """
+
         x = self.x
         y = self.y
         x += direction[0]
         y += direction[1]
 
-        prochain = matrice[y][x]
+        prochain = matrice[y][x]  # le point où le perso est censé aller
 
         if prochain in [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 48]:     # mur
             self.etat -= 1
@@ -174,6 +180,8 @@ class Heros:
             
 
 class Monstre:
+    """La classe dont les monstres vont être des instances"""
+
     ETAT_MAX = 100
     FAIM_MAX = 100
     
@@ -184,18 +192,22 @@ class Monstre:
         self.vie = 3
         self.etat = self.ETAT_MAX
         self.faim = self.FAIM_MAX
-        self.escalier = False
-        self.epee = False
-        self.clef = False
+        # self.escalier = False
+        # self.epee = False
+        # self.clef = False
         self.nageur = aquatique
-        self.fusee = 1
-        self.compteur_fusee = 0
-        self.score = 0
-        self.argent = 0
+        # self.fusee = 1
+        # self.compteur_fusee = 0
+        # self.score = 0
+        # self.argent = 0
         self.precedent = 0
         self.numero = no
 
     def deplacement(self, direction, matrice):
+        """On déplace les monstres dans la direction demandée
+        en suivant les règles applicables
+        """
+
         x = self.x
         y = self.y
         x += direction[0]
@@ -303,14 +315,15 @@ class Monstre:
         elif prochain == 45 : # coffre
             # si on a la clé, ça ouvre le coffre et il disparaît
             # sinon rien
-            if self.clef:
-                # self.score += 100
-                # self.clef = False
-                matrice[self.y][self.x] = 0
-                matrice[y][x] = self.numero
-                self.x, self.y = x, y
-                self.precedent = 0
-                # self.argent += rd.randint(50,150)
+            pass #les monstres n'ouvrent pas les coffres
+            # if self.clef:
+            #     # self.score += 100
+            #     # self.clef = False
+            #     matrice[self.y][self.x] = 0
+            #     matrice[y][x] = self.numero
+            #     self.x, self.y = x, y
+            #     self.precedent = 0
+            #     # self.argent += rd.randint(50,150)
 
         elif prochain == 42:  # fusée
             matrice[self.y][self.x] = 0
@@ -344,6 +357,7 @@ class Monstre:
                 matrice[self.y][self.x] = self.numero
             
     def deplace_vers_heros(self,matrice, heros:Heros, compteur_mvt=0, deja_fait=False):
+        """Déplace automatiquement le monstre dans la direction du héros"""
         # on a x, y du heros
         # on détermine vers où il est par rapport à nous
         # et on bouge dans cette direction
