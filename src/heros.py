@@ -82,7 +82,7 @@ class Heros:
             self.faim += 10
             self.score += 5
 
-        elif prochain == 5:   # monstre
+        elif prochain in [5, 49, 50]:   # monstre
             monstre : Monstre
             for i, monstre in enumerate(liste_monstres):
                 if (monstre.x, monstre.y) == (x, y):
@@ -185,7 +185,7 @@ class Monstre:
     ETAT_MAX = 100
     FAIM_MAX = 100
     
-    def __init__(self, x=0, y=0, aquatique=False, no=5):
+    def __init__(self, x=0, y=0, aquatique=False, herbeux=False, no=5):
         self.x = x
         self.y = y
         self.x0, self.y0 = x, y # les positions initiales pour respawn
@@ -196,6 +196,7 @@ class Monstre:
         # self.epee = False
         # self.clef = False
         self.nageur = aquatique
+        self.herbeux = herbeux
         # self.fusee = 1
         # self.compteur_fusee = 0
         # self.score = 0
@@ -243,6 +244,14 @@ class Monstre:
                 self.x, self.y = x, y
                 self.precedent = prochain
                 # pg.time.wait(50)
+
+        elif prochain in [39, 40, 41]: #herbe
+            if self.precedent != 20:
+                matrice[self.y][self.x] = self.precedent
+                matrice[y][x] = self.numero
+                self.x, self.y = x, y
+                self.precedent = prochain
+                
 
         elif prochain == 6:   # porte
             matrice[self.y][self.x] = self.precedent
