@@ -336,7 +336,8 @@ class Monstre:
                 if not self.nageur:
                     # self.etat -= 2*self.ETAT_MAX    # 2* sinon si on a pris la potion juste avant il se noie mais perd pas de vie...
                     # self.x, self.y = self.x0, self.y0
-                    self.precedent = 0
+                    # self.precedent = 0
+                    pass
                 else:                
                     self.x, self.y = x, y
                     self.precedent = prochain
