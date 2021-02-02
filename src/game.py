@@ -32,6 +32,7 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
     increment_aleatoire = 0
     increment_aleatoire_2 = 0
     increment_aleatoire_3 = 0
+    compteur_mvt = 0
 
     while running:
 
@@ -109,8 +110,9 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
             has_changed = False
             # puis on déplace les monstres
             monstre : heros.Monstre
+            compteur_mvt = (compteur_mvt+1)%2
             for monstre in liste_monstres :
-                monstre.deplace_vers_heros(mat, perso)
+                monstre.deplace_vers_heros(mat, perso, compteur_mvt)
             
         if perso.escalier:
             perso.escalier = False

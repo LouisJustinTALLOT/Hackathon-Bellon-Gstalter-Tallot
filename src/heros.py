@@ -339,7 +339,7 @@ class Monstre:
                     self.precedent = prochain
                 matrice[self.y][self.x] = 5
             
-    def deplace_vers_heros(self,matrice, heros:Heros):
+    def deplace_vers_heros(self,matrice, heros:Heros, compteur_mvt=0, deja_fait=False):
         # on a x, y du heros
         # on détermine vers où il est par rapport à nous
         # et on bouge dans cette direction
@@ -355,4 +355,11 @@ class Monstre:
             dep_y = delta_y//abs(delta_y)
         else:
             dep_y = 0 
-        self.deplacement((dep_x, dep_y), matrice)
+
+        if compteur_mvt:
+            self.deplacement((dep_x, 0), matrice)
+        else:
+            self.deplacement((0, dep_y), matrice)
+
+        if not deja_fait:
+            self.deplace_vers_heros(matrice, heros, (compteur_mvt+1)%2, True)
