@@ -22,9 +22,9 @@ def init_level(list_levels, i):
     for i in range(n):
         for j in range(m):
             if mat[i][j] == 5 : # on pourra étendre
-                liste_monstres.append(heros.Monstre(j, i))
+                liste_monstres.append(heros.Monstre(j, i, niveau=i+1))
             if mat[i][j] == 49:
-                liste_monstres.append(heros.Monstre(j, i, aquatique=True, no=49))
+                liste_monstres.append(heros.Monstre(j, i, aquatique=True, no=49, niveau=i+1))
 
                 
     return mat, x0, y0, liste_monstres
@@ -99,7 +99,7 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
                         case = 39
 
                 elif case in [43, 44]:
-                    case += (increment_aleatoire_2==0)
+                    case += (increment_aleatoire_3==0)
                     if case > 44:
                         case = 43
 
@@ -112,16 +112,19 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
                 perso.compteur_fusee -= 1
                 if perso.compteur_fusee == 0:
                     perso.fusee = 1
+
+        # puis on déplace les monstres
+        monstre : heros.Monstre
+        compteur_mvt = (compteur_mvt+1)%2
+        for monstre in liste_monstres :
+            monstre.deplace_vers_heros(mat, perso, compteur_mvt)
+
         pg.time.wait(delta_t//perso.fusee)
 
         if has_changed:
             # le personnage a alors bougé
             has_changed = False
-            # puis on déplace les monstres
-            monstre : heros.Monstre
-            compteur_mvt = (compteur_mvt+1)%2
-            for monstre in liste_monstres :
-                monstre.deplace_vers_heros(mat, perso, compteur_mvt)
+           
             
         if perso.escalier:
             # on va passer au niveau suivant
@@ -146,6 +149,12 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
             mat[perso.y][perso.x] = perso.precedent
             perso.x, perso.y = perso.x0, perso.y0
             mat[perso.y][perso.x] = 1
+            for monstre in liste_monstres:
+                mat[monstre.y][monstre.x] = monstre.precedent
+                monstre.x, monstre.y = monstre.x0, monstre.y0
+                monstre.compteur_attaque = 0
+                monstre.etat = monstre.ETAT_MAX * monstre.niveau
+                monstre.vie = 1
             
             # pg.time.wait(1000)
 

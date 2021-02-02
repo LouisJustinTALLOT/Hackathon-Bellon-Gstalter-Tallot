@@ -86,15 +86,17 @@ class Heros:
             monstre : Monstre
             for i, monstre in enumerate(liste_monstres):
                 if (monstre.x, monstre.y) == (x, y):
-                    break
-            if self.epee:
-                matrice[y][x] = 0
-                self.score += 30
-                monstre.vie = 0
-                monstre.deplacement((0,0), matrice)
-                liste_monstres.pop(i)
-            else:
-                self.etat -= 20
+                    if self.epee:
+                        matrice[y][x] = 0
+                        monstre.etat -= rd.randint(15, 30)
+                        monstre.deplacement((0,0), matrice, self)
+                        self.etat -= rd.randint(0, 10)
+                    else:
+                        if not monstre.compteur_attaque:
+                            self.etat -= rd.randint(10, 20)
+                            monstre.compteur_attaque -= 1
+                        monstre.compteur_attaque = 10
+
 
         elif prochain == 7:   # potion
             matrice[self.y][self.x] = 0
@@ -182,16 +184,17 @@ class Heros:
 class Monstre:
     """La classe dont les monstres vont être des instances"""
 
-    ETAT_MAX = 100
-    FAIM_MAX = 100
+    ETAT_MAX = 20
+    # FAIM_MAX = 100    # les monstres n'ont pas faim
     
-    def __init__(self, x=0, y=0, aquatique=False, no=5):
+    def __init__(self, x=0, y=0, aquatique=False, no=5, niveau=0):
         self.x = x
         self.y = y
         self.x0, self.y0 = x, y # les positions initiales pour respawn
-        self.vie = 3
-        self.etat = self.ETAT_MAX
-        self.faim = self.FAIM_MAX
+        self.niveau = niveau
+        self.vie = 1 # le monstre a une seule vie
+        self.etat = self.ETAT_MAX * self.niveau
+        # self.faim = self.FAIM_MAX
         # self.escalier = False
         # self.epee = False
         # self.clef = False
@@ -202,8 +205,9 @@ class Monstre:
         # self.argent = 0
         self.precedent = 0
         self.numero = no
+        self.compteur_attaque = 0
 
-    def deplacement(self, direction, matrice):
+    def deplacement(self, direction, matrice, heros:Heros):
         """On déplace les monstres dans la direction demandée
         en suivant les règles applicables
         """
@@ -214,6 +218,10 @@ class Monstre:
         y += direction[1]
 
         prochain = matrice[y][x]
+
+        if self.etat <= 0:
+            self.vie = 0
+            heros.score += 30
 
         if not self.vie:
             matrice[self.y][self.x] = self.precedent
@@ -270,6 +278,17 @@ class Monstre:
             #     self.score += 30
             # else:
             #     self.etat -= 20
+
+        elif prochain == 1:   # héros
+            if heros.epee:
+                self.etat -= rd.randint(15, 30)
+                heros.etat -= rd.randint(0, 10)
+            else:
+                if not self.compteur_attaque:
+                    heros.etat -= rd.randint(5, 20)
+                    self.compteur_attaque = 10
+                self.compteur_attaque -= 1
+                
 
         elif prochain == 7:   # potion
             matrice[self.y][self.x] = 0
@@ -355,8 +374,11 @@ class Monstre:
                     self.x, self.y = x, y
                     self.precedent = prochain
                 matrice[self.y][self.x] = self.numero
+
+
+
             
-    def deplace_vers_heros(self,matrice, heros:Heros, compteur_mvt=0, deja_fait=False):
+    def deplace_vers_heros(self, matrice, heros:Heros, compteur_mvt=0, deja_fait=False):
         """Déplace automatiquement le monstre dans la direction du héros"""
         # on a x, y du heros
         # on détermine vers où il est par rapport à nous
@@ -375,9 +397,9 @@ class Monstre:
             dep_y = 0 
 
         if compteur_mvt:
-            self.deplacement((dep_x, 0), matrice)
+            self.deplacement((dep_x, 0), matrice, heros)
         else:
-            self.deplacement((0, dep_y), matrice)
+            self.deplacement((0, dep_y), matrice, heros)
 
         if rd.random()>0.6 and not deja_fait:
             self.deplace_vers_heros(matrice, heros, (compteur_mvt+1)%2, True)
