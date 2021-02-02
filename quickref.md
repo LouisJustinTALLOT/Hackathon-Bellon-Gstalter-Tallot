@@ -31,3 +31,4 @@
 |46|`?`|![image](images/mystere.png)|case mystère|
 |47|`n`|![image](images/potion2.png)|potion 2 pour nager|
 |48|`+`|![image](images/mur_intersection.png)|intersection de murs|
+|49|`m`|![image](images/monstre_aquatique.png)|Monstre qui peut nager|

@@ -62,7 +62,8 @@ images = [pg.image.load("images/sol.png"),
           pg.image.load("images/coffre.png"), 
           pg.image.load("images/mystere.png"),
           pg.image.load("images/potion2.png"),
-          pg.image.load("images/mur_intersection.png")
+          pg.image.load("images/mur_intersection.png"), 
+          pg.image.load("images/monstre_aquatique.png")
 ] #images à afficher
 messages = [pg.image.load("images/perdu.png"),
             pg.image.load("images/bravo.png"),

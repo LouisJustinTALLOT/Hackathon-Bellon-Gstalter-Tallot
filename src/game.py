@@ -20,6 +20,9 @@ def init_level(list_levels, i):
         for j in range(m):
             if mat[i][j] == 5 : # on pourra étendre
                 liste_monstres.append(heros.Monstre(j, i))
+            if mat[i][j] == 49:
+                liste_monstres.append(heros.Monstre(j, i, aquatique=True, no=49))
+
                 
     return mat, x0, y0, liste_monstres
 
