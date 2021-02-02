@@ -9,10 +9,13 @@ import src.display as display
 import src.heros as heros
 
 def init_level(list_levels, i):
+    """Initialise les variables au début d'un niveau"""
     level = list_levels[i]
     mat = level.matrice_niveau
     bool_matrice = np.ones((len(mat), len(mat[0])))
     x0, y0 = level.depart_heros_x, level.depart_heros_y
+
+    # on va chercher les différents monstres présents sur la carte
     liste_monstres = []
     n, m = len(mat), len(mat[0])
     # n hauteur, m longueur
@@ -27,7 +30,7 @@ def init_level(list_levels, i):
     return mat, x0, y0, liste_monstres
 
 def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
-    
+    """Joue un niveau du jeu jusqu'à la mort ou au niveau suivant"""
     running = True
     has_changed = False
     compteur = 0
@@ -38,9 +41,10 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
     compteur_mvt = 0
 
     while running:
-
+        # la boucle qui tourne dans tout le niveau
         list_event, list_pressed = pg.event.get(), pg.key.get_pressed()
 
+        # on déplace selon les touches pressées
         if list_pressed[pg.K_UP]:
             has_changed = True
             perso.deplacement((0,-1), mat, liste_monstres)
@@ -63,6 +67,7 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
 
 
         for event in list_event:
+            # les conditions d'arrêt
                 if event.type == pg.QUIT:
                     running = False
                     return 2
@@ -74,10 +79,10 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
                         running = False
                         return 2
  
+        # ici, on fait bouger l'herbe, l'eau.....
         increment_aleatoire = (increment_aleatoire + 1 )%2
         increment_aleatoire_2 = (increment_aleatoire_2 + 1) %5
         increment_aleatoire_3 = (increment_aleatoire_3 + 1) %20
-        # on fait bouger l'eau
         n, m = len(mat), len(mat[0])
         # n hauteur, m longueur
         for i in range(n):
@@ -110,6 +115,7 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
         pg.time.wait(delta_t//perso.fusee)
 
         if has_changed:
+            # le personnage a alors bougé
             has_changed = False
             # puis on déplace les monstres
             monstre : heros.Monstre
@@ -118,11 +124,17 @@ def play_game(screen, perso:heros.Heros, mat, images, liste_monstres=[]):
                 monstre.deplace_vers_heros(mat, perso, compteur_mvt)
             
         if perso.escalier:
+            # on va passer au niveau suivant
             perso.escalier = False
-            return 1 # on va passer au niveau suivant
+            return 1 
+
         if perso.vie == 0:
-            return 0 # game_over
+            # game_over
+            return 0 
+
         if perso.etat <= 0 or perso.faim <= 0:
+            # on lui fait alors perdre une vie 
+            # et revenir au point de spawn du niveau
             perso.vie -= 1
             perso.faim = perso.FAIM_MAX
             perso.etat = perso.ETAT_MAX
