@@ -257,12 +257,14 @@ class Monstre:
                 # pg.time.wait(50)
 
         elif prochain in [39, 40, 41]: #herbe
-            if self.precedent != 20:
-                matrice[self.y][self.x] = self.precedent
-                matrice[y][x] = self.numero
-                self.x, self.y = x, y
-                self.precedent = prochain
-                
+            if self.herbeux:
+                if self.precedent != 20:
+                    matrice[self.y][self.x] = self.precedent
+                    matrice[y][x] = self.numero
+                    self.x, self.y = x, y
+                    self.precedent = prochain
+            else:
+                pass
 
         elif prochain == 6:   # porte
             matrice[self.y][self.x] = self.precedent
